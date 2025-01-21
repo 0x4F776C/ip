@@ -1,37 +1,54 @@
 import java.util.Scanner;
 
 public class TrashBot {
+    private static String[] tasks = new String[100]; // Task array
+    private static int taskCount = 0;  // Keep track of number of tasks
+
     // Method for responding to user input
-    public static void respond(String input) {
+    private static void respond(String input) {
         if (input.equals("bye")) {
             System.out.println("____________________________________________________________\n" +
                     " Bye. Don't cross the road with your eyes closed!\n" +
                     "____________________________________________________________\n");
+            System.exit(0);  // Exit the program when "bye" is entered
+        }
+        else if (input.equals("list")) {
+            if (taskCount == 0) {
+                System.out.println("List is empty!");
+                return;
+            }
+            System.out.println("______________________________________________________________");
+            for (int i = 0; i < taskCount; i++) {
+                System.out.println((i + 1) + ". " + tasks[i]);
+            }
+            System.out.println("______________________________________________________________");
         }
         else {
-            System.out.println("____________________________________________________________\n" +
-                    input +
-                    "\n" +
-                    "____________________________________________________________\n");
+            if (taskCount < tasks.length) {
+                tasks[taskCount] = input;
+                taskCount++;
+            } else {
+                System.out.println("List is full!");
+            }
         }
     }
 
     public static void main(String[] args) {
-        // Variable for welcome text
         String welcomeText = "____________________________________________________________\n" +
                 " Hello! I'm TrashBot\n" +
                 " What can I do you for?\n" +
-                "____________________________________________________________\n";
+                "____________________________________________________________\n"; // Variable for welcome string
 
-        // Print out welcome text
-        System.out.println(welcomeText);
+        System.out.println(welcomeText); // Print out welcome string
 
-        // Create Scanner object
-        Scanner scanInput = new Scanner(System.in);
-        // Get user input
-        String userInput = scanInput.nextLine();
+        Scanner scanInput = new Scanner(System.in); // Create Scanner object
 
-        // Get user input and respond accordingly
-        respond(userInput);
+        while (true) {
+            String userInput = scanInput.nextLine(); // Get user input
+            if (userInput.isEmpty()) {
+                continue;  // Skip empty inputs
+            }
+            respond(userInput); // Respond according to input match
+        }
     }
 }
