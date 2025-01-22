@@ -1,5 +1,5 @@
 import Exceptions.*;
-
+import Features.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -68,7 +68,7 @@ public class TrashBot {
 
     private static void validateTaskNumber(int taskNum) throws InvalidFormatException {
         if (taskNum < 0 || taskNum >= tasks.size()) {
-            throw new InvalidFormatException("Task number must be between 1 and " + tasks.size());
+            throw new InvalidFormatException("Features.Task number must be between 1 and " + tasks.size());
         }
     }
 
