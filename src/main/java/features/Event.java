@@ -1,4 +1,4 @@
-package Features;
+package features;
 
 public class Event extends Task {
     protected String from;
@@ -11,8 +11,16 @@ public class Event extends Task {
         this.to = timeInfo.substring(timeInfo.indexOf("/to") + 4).trim(); // get to
     }
 
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString() + " (from: " + getFrom() + " to: " + getTo() + ")";
     }
 }
