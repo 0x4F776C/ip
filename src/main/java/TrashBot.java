@@ -1,11 +1,8 @@
 import Exceptions.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-/*
- * TODO: Change if-else to switch-case when free
- */
 
 public class TrashBot {
     private static List<Task> tasks = new ArrayList<>();
@@ -107,18 +104,27 @@ public class TrashBot {
             String[] divider = input.split(" ", 2);
             String dInput = divider[0].toLowerCase();
 
-            if (dInput.equals("bye")) {
-                performActionBye();
-            } else if (dInput.equals("list")) {
-                performActionList();
-            } else if (dInput.equals("delete")) {
-                performActionDelete(divider);
-            } else if (dInput.equals("mark") || dInput.equals("unmark")) {
-                performActionMarkUnmark(divider, dInput);
-            } else if (dInput.equals("todo") || dInput.equals("deadline") || dInput.equals("event")) {
-                performActionTaskCreation(divider, dInput);
-            } else {
-                throw new UnknownInputException(dInput);
+            switch (dInput) {
+                case "bye":
+                    performActionBye();
+                    break;
+                case "list":
+                    performActionList();
+                    break;
+                case "delete":
+                    performActionDelete(divider);
+                    break;
+                case "mark":
+                case "unmark":
+                    performActionMarkUnmark(divider, dInput);
+                    break;
+                case "todo":
+                case "deadline":
+                case "event":
+                    performActionTaskCreation(divider, dInput);
+                    break;
+                default:
+                    throw new UnknownInputException(dInput);
             }
         } catch (DukeException e) {
             drawBorder(" " + e.getMessage());
