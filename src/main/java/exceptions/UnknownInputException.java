@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class UnknownInputException extends DukeException {
     public UnknownInputException(String input) {

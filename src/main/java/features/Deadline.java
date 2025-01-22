@@ -1,4 +1,4 @@
-package Features;
+package features;
 
 public class Deadline extends Task {
     protected String by;
@@ -6,6 +6,10 @@ public class Deadline extends Task {
     public Deadline(String input) {
         super(input.substring(9, input.indexOf("/by")).trim()); // get description
         this.by = input.substring(input.indexOf("/by") + 4).trim(); // get deadline
+    }
+
+    public String getBy() {
+        return by;
     }
 
     @Override
