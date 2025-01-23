@@ -24,6 +24,7 @@ public class TrashBot {
 
     /**
      * Prints content within a formatted border.
+     *
      * @param content The text to display
      */
     private static void drawBorder(String content) {
@@ -34,6 +35,7 @@ public class TrashBot {
 
     /**
      * Saves current tasks and exits the application.
+     *
      * @throws IOException If saving tasks fails
      */
     private static void performActionBye() throws IOException {
@@ -59,9 +61,10 @@ public class TrashBot {
 
     /**
      * Removes a task at the specified index.
+     *
      * @param divider Command arguments containing the task number
      * @throws InvalidFormatException If task number is invalid or missing
-     * @throws IOException If saving after deletion fails
+     * @throws IOException            If saving after deletion fails
      */
     private static void performActionDelete(String[] divider) throws InvalidFormatException, IOException {
         if (divider.length < 2) {
@@ -81,10 +84,11 @@ public class TrashBot {
 
     /**
      * Toggles the completion status of a task.
+     *
      * @param divider Command arguments containing the task number
      * @param command Either "mark" or "unmark"
      * @throws InvalidFormatException If task number is invalid or missing
-     * @throws IOException If saving after status change fails
+     * @throws IOException            If saving after status change fails
      */
     private static void performActionMarkUnmark(String[] divider, String command) throws InvalidFormatException, IOException {
         if (divider.length < 2) {
@@ -111,6 +115,7 @@ public class TrashBot {
 
     /**
      * Validates if a task number is within valid range.
+     *
      * @param taskNum The task index to validate
      * @throws InvalidFormatException If task number is out of bounds
      */
@@ -122,7 +127,8 @@ public class TrashBot {
 
     /**
      * Creates a new task based on type and input.
-     * @param input The task description and metadata
+     *
+     * @param input    The task description and metadata
      * @param taskType The type of task (todo, deadline, or event)
      * @return The created Task object
      * @throws DukeException If task creation fails due to invalid format
@@ -145,10 +151,11 @@ public class TrashBot {
 
     /**
      * Handles creation of new tasks.
-     * @param divider Command arguments containing task details
+     *
+     * @param divider  Command arguments containing task details
      * @param taskType The type of task to create
      * @throws DukeException If task creation fails
-     * @throws IOException If saving new task fails
+     * @throws IOException   If saving new task fails
      */
     private static void performActionTaskCreation(String[] divider, String taskType) throws DukeException, IOException {
         if (divider.length < 2 || divider[1].trim().isEmpty()) {
@@ -164,6 +171,7 @@ public class TrashBot {
 
     /**
      * Processes user input and executes corresponding commands.
+     *
      * @param input The user's command string
      */
     private static void respond(String input) {
@@ -202,10 +210,11 @@ public class TrashBot {
 
     /**
      * Application entry point. Initializes the bot and starts command processing loop.
+     *
      * @param args Command line arguments (not used)
      * @throws IOException If initialization fails
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         try {
             tasks = trashBotFile.load();
 

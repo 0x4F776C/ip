@@ -16,6 +16,7 @@ public class TrashBotFile {
 
     /**
      * Creates a TrashBotFile instance for file operations.
+     *
      * @param filePath Path to the file for storing tasks
      */
     public TrashBotFile(String filePath) {
@@ -66,7 +67,7 @@ public class TrashBotFile {
         try (FileReader fr = new FileReader(filePath);
              BufferedReader br = new BufferedReader(fr)) {
             String str;
-            while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty fk line
+            while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty line
                 Task task = convertStringToTask(str.trim()); // trim dem whitey
                 if (task != null) {
                     tasks.add(task);
@@ -97,7 +98,7 @@ public class TrashBotFile {
         sb.append(" | ").append(task.isDone() ? "1" : "0").append(" | ").append(task.getDescription());
 
         if (task instanceof Deadline) {
-            sb.append(" | ").append(((Deadline) task).getBy());
+            sb.append(" | ").append(((Deadline) task).getDateTime());
         } else if (task instanceof Event) {
             sb.append(" | ").append(((Event) task).getFrom()).append(" | ").append(((Event) task).getTo());
         }
