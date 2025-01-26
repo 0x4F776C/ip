@@ -1,4 +1,4 @@
-package features;
+package org.trashbot.tasks;
 
 public class Event extends Task {
     protected String from;

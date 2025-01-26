@@ -1,4 +1,4 @@
-package exceptions;
+package org.trashbot.exceptions;
 
 public class UnknownInputException extends DukeException {
     public UnknownInputException(String input) {

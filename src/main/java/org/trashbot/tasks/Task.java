@@ -1,4 +1,4 @@
-package features;
+package org.trashbot.tasks;
 
 /**
  * Base class representing a task with description and completion status.

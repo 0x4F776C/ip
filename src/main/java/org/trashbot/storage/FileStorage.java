@@ -1,16 +1,20 @@
-package disk;
+package org.trashbot.storage;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import features.*;
+import org.trashbot.core.DataPersistence;
+import org.trashbot.tasks.Deadline;
+import org.trashbot.tasks.Event;
+import org.trashbot.tasks.Task;
+import org.trashbot.tasks.Todo;
 
 /**
  * Handles file operations for saving and loading tasks to/from disk.
  */
-public class TrashBotFile {
+public class FileStorage implements DataPersistence {
     private final String filePath;
     private final Path directory;
 
@@ -19,7 +23,7 @@ public class TrashBotFile {
      *
      * @param filePath Path to the file for storing tasks
      */
-    public TrashBotFile(String filePath) {
+    public FileStorage(String filePath) {
         this.filePath = filePath;
         this.directory = Paths.get(filePath).getParent();
     }
