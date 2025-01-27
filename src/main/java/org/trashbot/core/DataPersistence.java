@@ -1,4 +1,3 @@
-// Package Structure
 package org.trashbot.core;
 
 import org.trashbot.tasks.Task;
