@@ -1,7 +1,7 @@
-package org.trashbot.commands;
+package org.duke.commands;
 
-import org.trashbot.core.DataPersistence;
-import org.trashbot.tasks.Task;
+import org.duke.core.DataPersistence;
+import org.duke.tasks.Task;
 
 import java.util.List;
 

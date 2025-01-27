@@ -1,15 +1,15 @@
-package org.trashbot.storage;
+package org.duke.storage;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
-import org.trashbot.tasks.Deadline;
-import org.trashbot.tasks.Event;
-import org.trashbot.tasks.Task;
-import org.trashbot.tasks.Todo;
+import org.duke.core.DataPersistence;
+import org.duke.tasks.Deadline;
+import org.duke.tasks.Event;
+import org.duke.tasks.Task;
+import org.duke.tasks.Todo;
 
 /**
  * Handles file operations for saving and loading tasks to/from disk.

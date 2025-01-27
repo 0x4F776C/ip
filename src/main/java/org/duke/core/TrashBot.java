@@ -1,10 +1,11 @@
-package org.trashbot.core;
+package org.duke.core;
 
-import org.trashbot.commands.*;
-import org.trashbot.exceptions.*;
-import org.trashbot.storage.FileStorage;
-import org.trashbot.tasks.Task;
-import org.trashbot.ui.TrashBotUI;
+import org.duke.commands.*;
+import org.duke.exceptions.DukeException;
+import org.duke.exceptions.UnknownInputException;
+import org.duke.storage.FileStorage;
+import org.duke.tasks.Task;
+import org.duke.ui.TrashBotUI;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,6 +1,6 @@
-package org.trashbot.ui;
+package org.duke.ui;
 
-import org.trashbot.core.TrashBot;
+import org.duke.core.TrashBot;
 
 import java.util.Scanner;
 

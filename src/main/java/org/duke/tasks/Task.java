@@ -1,4 +1,4 @@
-package org.trashbot.tasks;
+package org.duke.tasks;
 
 /**
  * Base class representing a task with description and completion status.

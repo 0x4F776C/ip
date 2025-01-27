@@ -1,4 +1,4 @@
-package org.trashbot.exceptions;
+package org.duke.exceptions;
 
 public class DukeException extends Exception {
     public DukeException(String message) {

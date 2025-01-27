@@ -1,6 +1,6 @@
-package org.trashbot.core;
+package org.duke.core;
 
-import org.trashbot.tasks.Task;
+import org.duke.tasks.Task;
 
 import java.util.List;
 import java.io.IOException;

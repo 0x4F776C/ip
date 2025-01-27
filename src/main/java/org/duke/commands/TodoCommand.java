@@ -1,9 +1,9 @@
-package org.trashbot.commands;
+package org.duke.commands;
 
-import org.trashbot.tasks.Task;
-import org.trashbot.tasks.Todo;
-import org.trashbot.core.DataPersistence;
-import org.trashbot.exceptions.EmptyDescriptionException;
+import org.duke.tasks.Task;
+import org.duke.tasks.Todo;
+import org.duke.core.DataPersistence;
+import org.duke.exceptions.EmptyDescriptionException;
 
 import java.io.IOException;
 import java.util.List;

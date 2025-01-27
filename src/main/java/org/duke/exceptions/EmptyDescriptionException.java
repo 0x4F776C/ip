@@ -1,4 +1,4 @@
-package org.trashbot.exceptions;
+package org.duke.exceptions;
 
 public class EmptyDescriptionException extends DukeException {
     public EmptyDescriptionException(String task) {

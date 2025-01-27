@@ -1,8 +1,8 @@
-package org.trashbot.commands;
+package org.duke.commands;
 
-import org.trashbot.tasks.Task;
-import org.trashbot.core.DataPersistence;
-import org.trashbot.exceptions.InvalidFormatException;
+import org.duke.tasks.Task;
+import org.duke.core.DataPersistence;
+import org.duke.exceptions.InvalidFormatException;
 
 import java.util.List;
 import java.io.IOException;

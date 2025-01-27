@@ -1,4 +1,4 @@
-package org.trashbot.exceptions;
+package org.duke.exceptions;
 
 public class StorageException extends DukeException {
     public StorageException(String message) {

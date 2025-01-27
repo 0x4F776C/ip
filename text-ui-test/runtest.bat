@@ -7,15 +7,15 @@ REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java ..\src\main\java\org.trashbot.exceptions\*.java ..\src\main\java\org.trashbot.features\*.java
+javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java ..\src\main\java\org.org.duke.exceptions\*.java ..\src\main\java\org.org.duke.features\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
 )
 REM no error here, errorlevel == 0
 
-REM run the program, feed commands from input.txt org.trashbot.disk and redirect the output to the ACTUAL.TXT
-java -classpath ..\bin org.trashbot.core.TrashBot < input.txt > ACTUAL.TXT
+REM run the program, feed commands from input.txt org.org.duke.disk and redirect the output to the ACTUAL.TXT
+java -classpath ..\bin core.org.duke.TrashBot < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT

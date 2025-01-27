@@ -1,4 +1,4 @@
-package org.trashbot.tasks;
+package org.duke.tasks;
 
 public class Todo extends Task {
     public Todo(String input) {
