@@ -30,12 +30,13 @@ test {
 }
 
 application {
-    mainClass.set("org.duke.core.TrashBot")
+    mainClass.set("org.trashbot.core.TrashBot")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "trashbot"
     archiveClassifier = null
+    archiveFileName = 'TrashBot.jar'
 }
 
 run {
