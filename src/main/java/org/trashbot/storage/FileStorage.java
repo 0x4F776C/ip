@@ -1,24 +1,29 @@
-package disk;
+package org.trashbot.storage;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import features.*;
+import org.trashbot.core.DataPersistence;
+import org.trashbot.tasks.Deadline;
+import org.trashbot.tasks.Event;
+import org.trashbot.tasks.Task;
+import org.trashbot.tasks.Todo;
 
 /**
  * Handles file operations for saving and loading tasks to/from disk.
  */
-public class TrashBotFile {
+public class FileStorage implements DataPersistence {
     private final String filePath;
     private final Path directory;
 
     /**
      * Creates a TrashBotFile instance for file operations.
+     *
      * @param filePath Path to the file for storing tasks
      */
-    public TrashBotFile(String filePath) {
+    public FileStorage(String filePath) {
         this.filePath = filePath;
         this.directory = Paths.get(filePath).getParent();
     }
@@ -66,7 +71,7 @@ public class TrashBotFile {
         try (FileReader fr = new FileReader(filePath);
              BufferedReader br = new BufferedReader(fr)) {
             String str;
-            while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty fk line
+            while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty line
                 Task task = convertStringToTask(str.trim()); // trim dem whitey
                 if (task != null) {
                     tasks.add(task);
@@ -97,7 +102,7 @@ public class TrashBotFile {
         sb.append(" | ").append(task.isDone() ? "1" : "0").append(" | ").append(task.getDescription());
 
         if (task instanceof Deadline) {
-            sb.append(" | ").append(((Deadline) task).getBy());
+            sb.append(" | ").append(((Deadline) task).getDateTime());
         } else if (task instanceof Event) {
             sb.append(" | ").append(((Event) task).getFrom()).append(" | ").append(((Event) task).getTo());
         }
