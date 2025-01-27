@@ -88,7 +88,7 @@ public class FileStorage implements DataPersistence {
      * @param task Task to convert
      * @return String representation of the task
      */
-    private String convertTaskToString(Task task) {
+    protected String convertTaskToString(Task task) {
         StringBuilder sb = new StringBuilder();
 
         if (task instanceof Todo) {
@@ -117,7 +117,7 @@ public class FileStorage implements DataPersistence {
      * @param str String representation of task
      * @return Task object or null if conversion fails
      */
-    private Task convertStringToTask(String str) {
+    protected Task convertStringToTask(String str) {
         try {
             String[] parts = str.split(" \\| ", -1); // use "-1" to keep empty strings; OMG THIS WORKS
 
