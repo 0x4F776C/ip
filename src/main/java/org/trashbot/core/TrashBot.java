@@ -35,24 +35,26 @@ public class TrashBot {
         String commandType = parts[0].toLowerCase();
 
         switch (commandType) {
-            case "todo":
-                return new TodoCommand(input);
-            case "deadline":
-                return new DeadlineCommand(input);
-            case "event":
-                return new EventCommand(input);
-            case "list":
-                return new ListCommand();
-            case "delete":
-                return new DeleteCommand(Integer.parseInt(parts[1]) - 1);
-            case "mark":
-                return new MarkCommand(Integer.parseInt(parts[1]) - 1, true);
-            case "unmark":
-                return new MarkCommand(Integer.parseInt(parts[1]) - 1, false);
-            case "bye":
-                System.exit(0);
-            default:
-                throw new UnknownInputException(commandType);
+        case "todo":
+            return new TodoCommand(input);
+        case "deadline":
+            return new DeadlineCommand(input);
+        case "event":
+            return new EventCommand(input);
+        case "list":
+            return new ListCommand();
+        case "delete":
+            return new DeleteCommand(Integer.parseInt(parts[1]) - 1);
+        case "mark":
+            return new MarkCommand(Integer.parseInt(parts[1]) - 1, true);
+        case "unmark":
+            return new MarkCommand(Integer.parseInt(parts[1]) - 1, false);
+        case "find":
+            return new FindCommand(input);
+        case "bye":
+            System.exit(0);
+        default:
+            throw new UnknownInputException(commandType);
         }
     }
 
