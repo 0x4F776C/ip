@@ -9,6 +9,7 @@ public class Task {
 
     /**
      * Creates a new task with the given description.
+     *
      * @param description Task description
      */
     public Task(String description) {
@@ -18,6 +19,7 @@ public class Task {
 
     /**
      * Checks if the task is completed.
+     *
      * @return true if task is done, false otherwise
      */
     public boolean isDone() {
@@ -26,6 +28,7 @@ public class Task {
 
     /**
      * Gets the task description.
+     *
      * @return Task description
      */
     public String getDescription() {
@@ -34,6 +37,7 @@ public class Task {
 
     /**
      * Gets the status icon for display purposes.
+     *
      * @return "X" if task is done, " " otherwise
      */
     public String getStatusIcon() {
@@ -57,9 +61,13 @@ public class Task {
     /**
      * Returns string representation of task.
      * Format: [Status] Description
+     *
      * @return Formatted task string
      */
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "["
+                + getStatusIcon()
+                + "] "
+                + description;
     }
 }

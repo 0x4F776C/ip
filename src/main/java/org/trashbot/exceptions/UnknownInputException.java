@@ -12,6 +12,9 @@ public class UnknownInputException extends DukeException {
      * @param input the detail message, which can be retrieved later by the {@link #getMessage()} method.
      */
     public UnknownInputException(String input) {
-        super("The input " + input + " is unknown!\n" + " Available input: todo, deadline, event, mark, unmark, list, bye");
+        super("The input "
+                + input
+                + " is unknown!\n"
+                + " Available input: todo, deadline, event, mark, unmark, list, bye");
     }
 }

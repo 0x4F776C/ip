@@ -1,14 +1,14 @@
 package org.trashbot.commands;
 
-import org.trashbot.tasks.Task;
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.DukeException;
+import org.trashbot.tasks.Task;
 
 import java.util.List;
 import java.io.IOException;
 
 /**
- * Provide an abstract method for executing different command
+ * Provides abstract method "execute" to the implementing classes
  */
 public interface Command {
     /**

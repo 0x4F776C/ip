@@ -29,7 +29,7 @@ public class Deadline extends Task {
      * Attempts to parse and format the deadline using multiple predefined datetime patterns.
      *
      * @return A formatted datetime string in the format "MMM dd yyyy h:mma" (e.g., "Sep 11 2001 1:33am"),
-     *         or the original deadline string if parsing fails.
+     * or the original deadline string if parsing fails.
      */
     public String getDateTime() {
         try {
@@ -53,9 +53,9 @@ public class Deadline extends Task {
             }
 
             // if all goes well, return the datetime :D
-            return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) +
-                    " " +
-                    dateTime.format(DateTimeFormatter.ofPattern("h:mma")).toLowerCase();
+            return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
+                    + " "
+                    + dateTime.format(DateTimeFormatter.ofPattern("h:mma")).toLowerCase();
         } catch (Exception e) {
             e.printStackTrace();
             return by; // use the original input if ALL ELSE FAILS
@@ -69,6 +69,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + getDateTime() + ")";
+        return "[D]"
+                + super.toString()
+                + " (by: " + getDateTime()
+                + ")";
     }
 }

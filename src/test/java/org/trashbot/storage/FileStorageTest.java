@@ -1,13 +1,16 @@
 package org.trashbot.storage;
 
-import org.trashbot.tasks.Task;
-import org.trashbot.tasks.Todo;
+import org.junit.jupiter.api.Test;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Event;
+import org.trashbot.tasks.Task;
+import org.trashbot.tasks.Todo;
 
-
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class FileStorageTest {
     private FileStorage storage = new FileStorage("test.txt");
@@ -32,7 +35,7 @@ class FileStorageTest {
         assertTrue(task instanceof Deadline);
         assertFalse(task.isDone());
         assertEquals("watch netflix", task.getDescription());
-        assertEquals("Sep 11 2020 11:59pm", ((Deadline)task).getDateTime());
+        assertEquals("Sep 11 2020 11:59pm", ((Deadline) task).getDateTime());
     }
 
     @Test
@@ -44,8 +47,8 @@ class FileStorageTest {
         assertTrue(task instanceof Event);
         assertTrue(task.isDone());
         assertEquals("dance with barney", task.getDescription());
-        assertEquals("2pm", ((Event)task).getFrom());
-        assertEquals("4pm", ((Event)task).getTo());
+        assertEquals("2pm", ((Event) task).getFrom());
+        assertEquals("4pm", ((Event) task).getTo());
     }
 
     @Test
@@ -64,7 +67,7 @@ class FileStorageTest {
 
     @Test
     void convertStringToTask_MissingFields() {
-        String input = "D | 1 | die";  // Missing deadline
+        String input = "D | 1 | die"; // Missing deadline
         Task task = storage.convertStringToTask(input);
         assertNull(task);
     }
