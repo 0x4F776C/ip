@@ -4,7 +4,7 @@ package org.trashbot.tasks;
  * Base class representing a task with description and completion status.
  */
 public class Task {
-    protected String description;
+    protected final String description;
     protected boolean completed;
 
     /**

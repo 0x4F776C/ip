@@ -1,7 +1,13 @@
 package org.trashbot.storage;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +27,7 @@ public class FileStorage implements DataPersistence {
     /**
      * Creates a TrashBotFile instance for file operations.
      *
-     * @param filePath Path to the file for storing tasks
+     * @param filePath path to the file for storing tasks
      */
     public FileStorage(String filePath) {
         this.filePath = filePath;
@@ -32,8 +38,8 @@ public class FileStorage implements DataPersistence {
      * Saves a list of tasks to the specified file.
      * Creates directories if they don't exist.
      *
-     * @param tasks List of tasks to save
-     * @throws IOException If an I/O error occurs during file operations
+     * @param tasks list of tasks to save
+     * @throws IOException if an I/O error occurs during file operations
      */
     public void save(List<Task> tasks) throws IOException {
         if (!Files.exists(directory)) {
@@ -53,8 +59,8 @@ public class FileStorage implements DataPersistence {
      * Loads tasks from the specified file.
      * Creates file and directories if they don't exist.
      *
-     * @return List of tasks read from the file
-     * @throws IOException If an I/O error occurs during file operations
+     * @return list of tasks read from the file
+     * @throws IOException if an I/O error occurs during file operations
      */
     public List<Task> load() throws IOException {
         List<Task> tasks = new ArrayList<>();
@@ -72,7 +78,7 @@ public class FileStorage implements DataPersistence {
              BufferedReader br = new BufferedReader(fr)) {
             String str;
             while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty line
-                Task task = convertStringToTask(str.trim()); // trim dem whitey
+                Task task = convertStringToTask(str.trim()); // trim the white spaces
                 if (task != null) {
                     tasks.add(task);
                 }
@@ -85,8 +91,8 @@ public class FileStorage implements DataPersistence {
      * Converts a task object to its string representation for storage.
      * Format: Type | Done Status | Description [| Additional Fields]
      *
-     * @param task Task to convert
-     * @return String representation of the task
+     * @param task task to convert
+     * @return string representation of the task
      */
     protected String convertTaskToString(Task task) {
         StringBuilder sb = new StringBuilder();
@@ -114,8 +120,8 @@ public class FileStorage implements DataPersistence {
      * Converts a string representation back to a Task object.
      * Handles Todo, Deadline, and Event task types.
      *
-     * @param str String representation of task
-     * @return Task object or null if conversion fails
+     * @param str string representation of task
+     * @return task object or null if conversion fails
      */
     protected Task convertStringToTask(String str) {
         try {
