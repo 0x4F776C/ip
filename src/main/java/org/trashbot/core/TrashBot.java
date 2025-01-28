@@ -1,12 +1,6 @@
 package org.trashbot.core;
 
-import org.trashbot.commands.Command;
-import org.trashbot.commands.DeadlineCommand;
-import org.trashbot.commands.DeleteCommand;
-import org.trashbot.commands.EventCommand;
-import org.trashbot.commands.ListCommand;
-import org.trashbot.commands.MarkCommand;
-import org.trashbot.commands.TodoCommand;
+import org.trashbot.commands.*;
 import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.UnknownInputException;
 import org.trashbot.storage.FileStorage;
@@ -55,6 +49,8 @@ public class TrashBot {
             return new MarkCommand(Integer.parseInt(parts[1]) - 1, true);
         case "unmark":
             return new MarkCommand(Integer.parseInt(parts[1]) - 1, false);
+        case "find":
+            return new FindCommand(input);
         case "bye":
             System.exit(0);
         default:

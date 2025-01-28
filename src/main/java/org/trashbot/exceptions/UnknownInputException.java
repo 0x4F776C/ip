@@ -15,6 +15,6 @@ public class UnknownInputException extends DukeException {
         super("The input "
                 + input
                 + " is unknown!\n"
-                + " Available input: todo, deadline, event, mark, unmark, list, bye");
+                + " Available input: todo, deadline, event, mark, unmark, list, find, bye");
     }
 }
