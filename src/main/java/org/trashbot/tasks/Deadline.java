@@ -12,7 +12,7 @@ public class Deadline extends Task {
     /**
      * The deadline for the task in string format.
      */
-    protected String by;
+    protected final String by;
 
     /**
      * Constructs a {@code Deadline} object by parsing the input string to extract the task description and deadline.
