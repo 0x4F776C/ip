@@ -23,7 +23,9 @@ public class EventCommand implements Command {
         Task newTask = new Event(input);
         tasks.add(newTask);
         storage.save(tasks);
-        System.out.println(" Got it. I've added this task:\n  " + newTask +
-                "\n Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(" Got it. I've added this task:\n  " + newTask
+                + "\n Now you have "
+                + tasks.size()
+                + " tasks in the list.");
     }
 }

@@ -1,9 +1,9 @@
 package org.trashbot.commands;
 
-import org.trashbot.tasks.Task;
-import org.trashbot.tasks.Todo;
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.EmptyDescriptionException;
+import org.trashbot.tasks.Task;
+import org.trashbot.tasks.Todo;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +24,10 @@ public class TodoCommand implements Command {
         Task newTask = new Todo(input);
         tasks.add(newTask);
         storage.save(tasks);
-        System.out.println(" Got it. I've added this task:\n " + newTask + "\n Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println(" Got it. I've added this task:\n "
+                + newTask
+                + "\n Now you have "
+                + tasks.size()
+                + " tasks in the list.");
     }
 }

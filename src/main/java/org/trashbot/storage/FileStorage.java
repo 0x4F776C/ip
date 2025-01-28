@@ -1,7 +1,13 @@
 package org.trashbot.storage;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +77,8 @@ public class FileStorage implements DataPersistence {
         try (FileReader fr = new FileReader(filePath);
              BufferedReader br = new BufferedReader(fr)) {
             String str;
-            while ((str = br.readLine()) != null && !str.trim().isEmpty()) { // use trim and isEmpty to check for empty line
-                Task task = convertStringToTask(str.trim()); // trim dem whitey
+            while ((str = br.readLine()) != null && !str.trim().isEmpty()) {
+                Task task = convertStringToTask(str.trim());
                 if (task != null) {
                     tasks.add(task);
                 }
@@ -131,23 +137,32 @@ public class FileStorage implements DataPersistence {
             Task task;
 
             switch (taskType) {
-                case "T":
-                    task = new Todo("todo " + description);
-                    break;
-                case "D":
-                    if (parts.length < 4) {
-                        return null;
-                    }
-                    task = new Deadline("deadline " + description + " /by " + parts[3]);
-                    break;
-                case "E":
-                    if (parts.length < 5) {
-                        return null;
-                    }
-                    task = new Event("event " + description + " /from " + parts[3] + " /to " + parts[4]);
-                    break;
-                default:
+            case "T":
+                task = new Todo("todo "
+                        + description);
+                break;
+            case "D":
+                if (parts.length < 4) {
                     return null;
+                }
+                task = new Deadline("deadline "
+                        + description
+                        + " /by "
+                        + parts[3]);
+                break;
+            case "E":
+                if (parts.length < 5) {
+                    return null;
+                }
+                task = new Event("event "
+                        + description
+                        + " /from "
+                        + parts[3]
+                        + " /to "
+                        + parts[4]);
+                break;
+            default:
+                return null;
             }
             if (isDone) {
                 task.markAsDone();

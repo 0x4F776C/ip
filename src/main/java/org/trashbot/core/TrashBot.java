@@ -1,6 +1,12 @@
 package org.trashbot.core;
 
-import org.trashbot.commands.*;
+import org.trashbot.commands.Command;
+import org.trashbot.commands.DeadlineCommand;
+import org.trashbot.commands.DeleteCommand;
+import org.trashbot.commands.EventCommand;
+import org.trashbot.commands.ListCommand;
+import org.trashbot.commands.MarkCommand;
+import org.trashbot.commands.TodoCommand;
 import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.UnknownInputException;
 import org.trashbot.storage.FileStorage;
@@ -35,24 +41,24 @@ public class TrashBot {
         String commandType = parts[0].toLowerCase();
 
         switch (commandType) {
-            case "todo":
-                return new TodoCommand(input);
-            case "deadline":
-                return new DeadlineCommand(input);
-            case "event":
-                return new EventCommand(input);
-            case "list":
-                return new ListCommand();
-            case "delete":
-                return new DeleteCommand(Integer.parseInt(parts[1]) - 1);
-            case "mark":
-                return new MarkCommand(Integer.parseInt(parts[1]) - 1, true);
-            case "unmark":
-                return new MarkCommand(Integer.parseInt(parts[1]) - 1, false);
-            case "bye":
-                System.exit(0);
-            default:
-                throw new UnknownInputException(commandType);
+        case "todo":
+            return new TodoCommand(input);
+        case "deadline":
+            return new DeadlineCommand(input);
+        case "event":
+            return new EventCommand(input);
+        case "list":
+            return new ListCommand();
+        case "delete":
+            return new DeleteCommand(Integer.parseInt(parts[1]) - 1);
+        case "mark":
+            return new MarkCommand(Integer.parseInt(parts[1]) - 1, true);
+        case "unmark":
+            return new MarkCommand(Integer.parseInt(parts[1]) - 1, false);
+        case "bye":
+            System.exit(0);
+        default:
+            throw new UnknownInputException(commandType);
         }
     }
 

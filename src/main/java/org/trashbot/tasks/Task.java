@@ -60,6 +60,9 @@ public class Task {
      * @return Formatted task string
      */
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "["
+                + getStatusIcon()
+                + "] "
+                + description;
     }
 }
