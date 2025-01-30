@@ -20,6 +20,7 @@ text-ui-test/EXPECTED-UNIX.TXT
 *.class
 
 # Extra
+NOTE.txt
 /data/
 /text-ui-test/data/
 /script
