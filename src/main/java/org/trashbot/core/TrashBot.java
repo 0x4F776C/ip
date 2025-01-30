@@ -1,14 +1,14 @@
 package org.trashbot.core;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.trashbot.commands.*;
 import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.UnknownInputException;
 import org.trashbot.storage.FileStorage;
 import org.trashbot.tasks.Task;
 import org.trashbot.ui.TrashBotUI;
-
-import java.io.IOException;
-import java.util.List;
 
 public class TrashBot {
     private List<Task> tasks;

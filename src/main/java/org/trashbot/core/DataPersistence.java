@@ -1,9 +1,9 @@
 package org.trashbot.core;
 
-import org.trashbot.tasks.Task;
-
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
+
+import org.trashbot.tasks.Task;
 
 /**
  * Defines the contract for persisting and retrieving task data in the task management system.
