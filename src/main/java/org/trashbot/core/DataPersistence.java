@@ -19,12 +19,12 @@ import org.trashbot.tasks.Task;
  * DataPersistence storage = new FileDataPersistence("tasks.txt");
  *
  * // Saving tasks
- * List<Task> tasks = new ArrayList<>();
+ * List&lt;Task&gt; tasks = new ArrayList<>();
  * tasks.add(new Todo("Read book"));
  * storage.save(tasks);
  *
  * // Loading tasks
- * List<Task> loadedTasks = storage.load();
+ * List&lt;Task&gt; loadedTasks = storage.load();
  * </pre>
  * </p>
  *

@@ -29,11 +29,11 @@ import org.trashbot.tasks.Todo;
  * @see Todo
  */
 public class TodoCommand implements Command {
-    /** The raw input string containing the todo task description */
-    private final String input;
-
     /** The minimum string length for "Todo" filter */
     private static final int MIN_DESCRIPTION_LENGTH = 5;
+
+    /** The raw input string containing the todo task description */
+    private final String input;
 
     /**
      * Constructs a new TodoCommand with the specified input string.

@@ -10,8 +10,8 @@ import org.trashbot.tasks.Task;
  * This command implementation filters tasks based on whether their descriptions contain
  * the specified search term (case-insensitive).
  *
- * <p>The command expects input in the format: "find <keyword>"
- * where <keyword> is the search term to match against task descriptions.</p>
+ * <p>The command expects input in the format: "find &lt;keyword&gt;"
+ * where &lt;keyword&gt; is the search term to match against task descriptions.</p>
  *
  * <p>Example usage:
  * <pre>
@@ -48,7 +48,6 @@ public class FindCommand implements Command {
      */
     @Override
     public void execute(List<Task> tasks, DataPersistence storage) {
-        /** Replaced for-loop with Stream for readability */
         List<Task> matchingTasks = tasks.stream()
                 .filter(task -> task.getDescription().toLowerCase().contains(term))
                 .toList();

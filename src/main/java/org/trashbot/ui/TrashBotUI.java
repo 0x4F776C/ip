@@ -1,8 +1,8 @@
 package org.trashbot.ui;
 
-import org.trashbot.core.TrashBot;
-
 import java.util.Scanner;
+
+import org.trashbot.core.TrashBot;
 
 /**
  * Provides the user interface for the TrashBot task management system.

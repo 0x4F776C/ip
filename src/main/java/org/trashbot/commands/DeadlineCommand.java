@@ -13,8 +13,8 @@ import org.trashbot.tasks.Task;
  * This command implementation processes user input to create new deadline tasks with specific
  * due dates and adds them to the task list.
  *
- * <p>The command expects input in the format: "deadline <task> /by <due>"
- * where <task> is the task description and <due> is the deadline date/time.</p>
+ * <p>The command expects input in the format: "deadline &lt;task&gt; /by &lt;due&gt;"
+ * where &lt;task&gt; is the task description and &lt;due&gt; is the deadline date/time.</p>
  *
  * <p>Example usage:
  * <pre>

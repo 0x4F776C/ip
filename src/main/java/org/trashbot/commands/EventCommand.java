@@ -13,8 +13,8 @@ import org.trashbot.tasks.Task;
  * This command implementation processes user input to create new event tasks with specific
  * starting and ending date/time, and add them to the task list.
  *
- * <p>The command expects input in the format: "event <task> /from <start> /to <end>"
- * where <task> is the task description, <start> is the start date/time, and <end>
+ * <p>The command expects input in the format: "event &lt;task&gt; /from &lt;start&gt; /to &lt;end&gt;"
+ * where &lt;task&gt; is the task description, &lt;start&gt; is the start date/time, and &lt;end&gt;
  * is the end date/time</p>
  *
  * <p>Example usage:

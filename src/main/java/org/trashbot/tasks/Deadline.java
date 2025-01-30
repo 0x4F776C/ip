@@ -18,7 +18,7 @@ public class Deadline extends Task {
      * Constructs a {@code Deadline} object by parsing the input string to extract the task description and deadline.
      *
      * @param input the input string containing the task description and deadline in the format
-     *              "deadline <description> /by <deadline>".
+     *              "deadline &lt;description&gt; /by &lt;deadline&gt;".
      */
     public Deadline(String input) {
         super(input.substring(9, input.indexOf("/by")).trim()); // get description
@@ -29,7 +29,7 @@ public class Deadline extends Task {
      * Attempts to parse and format the deadline using multiple predefined datetime patterns.
      *
      * @return A formatted datetime string in the format "MMM dd yyyy h:mma" (e.g., "Sep 11 2001 1:33am"),
-     * or the original deadline string if parsing fails.
+     *     or the original deadline string if parsing fails.
      */
     public String getDateTime() {
         try {
@@ -65,7 +65,7 @@ public class Deadline extends Task {
     /**
      * Returns the string representation of the deadline task.
      *
-     * @return A string in the format "[D]<description> (by: <formatted deadline>)".
+     * @return A string in the format "[D]&lt;description&gt; (by: &lt;formatted deadline&gt;)".
      */
     @Override
     public String toString() {
