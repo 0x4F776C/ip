@@ -13,10 +13,11 @@ import org.trashbot.tasks.Task;
 public interface Command {
     /**
      * Provide an abstract method to execute different command
-     * @param tasks list of tasks to operate on
+     *
+     * @param tasks   list of tasks to operate on
      * @param storage storage with save/load operation
      * @throws DukeException if a custom error occurs during execution
-     * @throws IOException if an I/O error occurs during file operation
+     * @throws IOException   if an I/O error occurs during file operation
      */
     void execute(List<Task> tasks, DataPersistence storage) throws DukeException, IOException;
 }

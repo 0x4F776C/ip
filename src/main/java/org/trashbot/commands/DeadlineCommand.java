@@ -47,12 +47,11 @@ public class DeadlineCommand implements Command {
      * <p>The method parses the input string to create a new {@link Deadline} task. The input
      * must contain the "/by" delimiter to separate the task description from the deadline.</p>
      *
-     * @param tasks The list of tasks to which the new deadline task will be added
+     * @param tasks   The list of tasks to which the new deadline task will be added
      * @param storage The data persistence mechanism used to save the updated task list
      * @throws InvalidFormatException if the input string does not contain the "/by" delimiter
-     *                               or is not in the correct format
-     * @throws IOException if there is an error saving the task list to storage
-     *
+     *                                or is not in the correct format
+     * @throws IOException            if there is an error saving the task list to storage
      * @see Deadline
      * @see DataPersistence#save(List)
      */

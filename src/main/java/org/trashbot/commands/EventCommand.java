@@ -48,12 +48,11 @@ public class EventCommand implements Command {
      * <p>The method parses the input string to create a new {@link Event} task. The input
      * must contain the "/from" and "/to" delimiter to separate the task description from the event.</p>
      *
-     * @param tasks The list of tasks to which the new event task will be added
+     * @param tasks   The list of tasks to which the new event task will be added
      * @param storage The data persistence mechanism used to save the updated task list
      * @throws InvalidFormatException if the input string does not contain the "/from" and "/to" delimiter
-     *                               or is not in the correct format
-     * @throws IOException if there is an error saving the task list to storage
-     *
+     *                                or is not in the correct format
+     * @throws IOException            if there is an error saving the task list to storage
      * @see Event
      * @see DataPersistence#save(List)
      */

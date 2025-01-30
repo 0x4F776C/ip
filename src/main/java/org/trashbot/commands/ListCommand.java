@@ -45,7 +45,7 @@ public class ListCommand implements Command {
      * <p>The storage parameter is not used in this implementation as the command
      * only reads and displays the current state of the task list without modification.</p>
      *
-     * @param tasks The list of tasks to be displayed
+     * @param tasks   The list of tasks to be displayed
      * @param storage The data persistence mechanism (unused in this implementation)
      */
     @Override

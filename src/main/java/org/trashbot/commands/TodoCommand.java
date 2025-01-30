@@ -29,10 +29,14 @@ import org.trashbot.tasks.Todo;
  * @see Todo
  */
 public class TodoCommand implements Command {
-    /** The minimum string length for "Todo" filter */
+    /**
+     * The minimum string length for "Todo" filter
+     */
     private static final int MIN_DESCRIPTION_LENGTH = 5;
 
-    /** The raw input string containing the todo task description */
+    /**
+     * The raw input string containing the todo task description
+     */
     private final String input;
 
     /**
@@ -54,12 +58,11 @@ public class TodoCommand implements Command {
      * the list is persisted to storage, and a confirmation message is displayed
      * to the user.</p>
      *
-     * @param tasks The list of tasks to which the new todo task will be added
+     * @param tasks   The list of tasks to which the new todo task will be added
      * @param storage The data persistence mechanism used to save the updated task list
      * @throws EmptyDescriptionException if the input description is empty or too short
-     *                                  (4 characters or less after trimming)
-     * @throws IOException if there is an error saving the task list to storage
-     *
+     *                                   (4 characters or less after trimming)
+     * @throws IOException               if there is an error saving the task list to storage
      * @see Todo
      * @see DataPersistence#save(List)
      */

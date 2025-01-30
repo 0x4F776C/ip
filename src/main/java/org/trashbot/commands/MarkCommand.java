@@ -32,16 +32,20 @@ import org.trashbot.tasks.Task;
  * @see Task
  */
 public class MarkCommand implements Command {
-    /** The index of the task to be marked (0-based) */
+    /**
+     * The index of the task to be marked (0-based)
+     */
     private int taskNum;
 
-    /** Flag indicating whether to mark the task as done (true) or not done (false) */
+    /**
+     * Flag indicating whether to mark the task as done (true) or not done (false)
+     */
     private boolean markAsDone;
 
     /**
      * Constructs a new MarkCommand for the specified task number and completion status.
      *
-     * @param taskNum The index of the task to be marked (0-based index)
+     * @param taskNum    The index of the task to be marked (0-based index)
      * @param markAsDone True to mark the task as done, false to mark as not done
      */
     public MarkCommand(int taskNum, boolean markAsDone) {
@@ -57,12 +61,11 @@ public class MarkCommand implements Command {
      * <p>After successfully marking the task, the updated task list is persisted to storage
      * and a confirmation message is displayed to the user indicating the new status.</p>
      *
-     * @param tasks The list of tasks containing the task to be marked
+     * @param tasks   The list of tasks containing the task to be marked
      * @param storage The data persistence mechanism used to save the updated task list
      * @throws InvalidFormatException if the task number is out of range (less than 0 or
-     *                               greater than or equal to the size of the task list)
-     * @throws IOException if there is an error saving the task list to storage
-     *
+     *                                greater than or equal to the size of the task list)
+     * @throws IOException            if there is an error saving the task list to storage
      * @see Task#markAsDone()
      * @see Task#markAsNotDone()
      * @see DataPersistence#save(List)

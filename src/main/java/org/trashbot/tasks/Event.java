@@ -23,10 +23,14 @@ package org.trashbot.tasks;
  * @see Task
  */
 public class Event extends Task {
-    /** The start time */
+    /**
+     * The start time
+     */
     protected final String from;
 
-    /** The end time */
+    /**
+     * The end time
+     */
     protected final String to;
 
     /**
@@ -44,6 +48,7 @@ public class Event extends Task {
 
     /**
      * Gets the start time of the event.
+     *
      * @return The event's start time as a string
      */
     public String getFrom() {
@@ -52,6 +57,7 @@ public class Event extends Task {
 
     /**
      * Gets the start time of the event.
+     *
      * @return The event's end time as a string
      */
     public String getTo() {

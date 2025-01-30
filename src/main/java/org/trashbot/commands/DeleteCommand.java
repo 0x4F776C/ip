@@ -26,7 +26,9 @@ import org.trashbot.tasks.Task;
  * @see Task
  */
 public class DeleteCommand implements Command {
-    /** The index of the task to be deleted (0-based) */
+    /**
+     * The index of the task to be deleted (0-based)
+     */
     private final int taskId;
 
     /**
@@ -46,12 +48,11 @@ public class DeleteCommand implements Command {
      * <p>After successful deletion, the updated task list is persisted to storage
      * and a confirmation message is displayed to the user.</p>
      *
-     * @param tasks The list of tasks from which a task will be deleted
+     * @param tasks   The list of tasks from which a task will be deleted
      * @param storage The data persistence mechanism used to save the updated task list
      * @throws InvalidFormatException if the task ID is out of range (less than 0 or
-     *                               greater than or equal to the size of the task list)
-     * @throws IOException if there is an error saving the task list to storage
-     *
+     *                                greater than or equal to the size of the task list)
+     * @throws IOException            if there is an error saving the task list to storage
      * @see DataPersistence#save(List)
      */
     @Override
