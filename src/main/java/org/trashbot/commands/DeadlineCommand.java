@@ -1,12 +1,12 @@
 package org.trashbot.commands;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.InvalidFormatException;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Task;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Handles the creation and management of deadline-based tasks in the task management system.

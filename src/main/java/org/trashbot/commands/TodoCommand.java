@@ -1,12 +1,12 @@
 package org.trashbot.commands;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.tasks.Task;
 import org.trashbot.tasks.Todo;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Handles the creation of todo tasks in the task management system.

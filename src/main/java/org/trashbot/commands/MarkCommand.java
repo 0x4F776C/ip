@@ -1,11 +1,11 @@
 package org.trashbot.commands;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.InvalidFormatException;
 import org.trashbot.tasks.Task;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Handles marking tasks as done or not done in the task management system.

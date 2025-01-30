@@ -1,13 +1,12 @@
 package org.trashbot.commands;
 
-import org.trashbot.core.DataPersistence;
-import org.trashbot.exceptions.InvalidFormatException;
-import org.trashbot.tasks.Deadline;
-import org.trashbot.tasks.Event;
-import org.trashbot.tasks.Task;
-
 import java.io.IOException;
 import java.util.List;
+
+import org.trashbot.core.DataPersistence;
+import org.trashbot.exceptions.InvalidFormatException;
+import org.trashbot.tasks.Event;
+import org.trashbot.tasks.Task;
 
 /**
  * Handles the creation of event tasks.

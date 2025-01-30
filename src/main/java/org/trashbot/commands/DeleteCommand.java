@@ -1,11 +1,11 @@
 package org.trashbot.commands;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.InvalidFormatException;
 import org.trashbot.tasks.Task;
-
-import java.util.List;
-import java.io.IOException;
 
 /**
  * Handles the deletion of tasks from the task management system.

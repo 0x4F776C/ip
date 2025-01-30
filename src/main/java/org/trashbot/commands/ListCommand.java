@@ -1,9 +1,9 @@
 package org.trashbot.commands;
 
+import java.util.List;
+
 import org.trashbot.core.DataPersistence;
 import org.trashbot.tasks.Task;
-
-import java.util.List;
 
 /**
  * Displays all tasks currently stored in the task management system.
