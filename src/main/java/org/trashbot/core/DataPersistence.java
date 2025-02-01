@@ -53,7 +53,7 @@ public interface DataPersistence {
      * initialized, an empty list should be returned.</p>
      *
      * @return A list containing all stored tasks, or an empty list if no tasks
-     * are stored
+     *     are stored
      * @throws IOException if there is an error reading from the storage medium,
      *                     such as file system errors or network issues
      */
