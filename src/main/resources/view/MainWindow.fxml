@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="org.trashbot.ui.MainWindow"
+            xmlns:fx="http://javafx.com/fxml"
+            prefWidth="600"
+            prefHeight="400">
+
+    <VBox spacing="10" AnchorPane.topAnchor="10"
+          AnchorPane.rightAnchor="10"
+          AnchorPane.bottomAnchor="10"
+          AnchorPane.leftAnchor="10">
+
+        <TextArea fx:id="outputArea"
+                  VBox.vgrow="ALWAYS"
+                  editable="false"
+                  wrapText="true"
+                  style="-fx-font-family: 'Courier New';"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="userInput"
+                       HBox.hgrow="ALWAYS"
+                       onAction="#handleUserInput"
+                       promptText="Enter your command..."/>
+
+            <Button fx:id="sendButton"
+                    text="Send"
+                    onAction="#handleUserInput"
+                    defaultButton="true"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

@@ -9,10 +9,18 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.10.0'
+def osName = System.getProperty("os.name").toLowerCase()
+def platform = osName.contains("win") ? "win" : osName.contains("mac") ? "mac" : "linux"
+String javaFxVersion = '17.0.7'
 
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: platform
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: platform
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: platform
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: platform
 }
 
 test {
@@ -30,7 +38,7 @@ test {
 }
 
 application {
-    mainClass.set("org.trashbot.core.TrashBot")
+    mainClass.set("org.trashbot.ui.Launcher")
 }
 
 shadowJar {
