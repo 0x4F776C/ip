@@ -51,7 +51,6 @@ public class MainWindow {
         if (input.isEmpty()) {
             return;
         }
-        
         addUserMessage(input);
 
         try {
