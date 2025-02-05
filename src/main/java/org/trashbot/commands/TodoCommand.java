@@ -60,6 +60,7 @@ public class TodoCommand implements Command {
      *
      * @param tasks   The list of tasks to which the new todo task will be added
      * @param storage The data persistence mechanism used to save the updated task list
+     * @return String containing the command's output message
      * @throws EmptyDescriptionException if the input description is empty or too short
      *                                   (4 characters or less after trimming)
      * @throws IOException               if there is an error saving the task list to storage
@@ -67,7 +68,7 @@ public class TodoCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) throws EmptyDescriptionException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws EmptyDescriptionException, IOException {
         if (input.trim().length() < MIN_DESCRIPTION_LENGTH) {
             throw new EmptyDescriptionException("todo");
         }
@@ -75,10 +76,8 @@ public class TodoCommand implements Command {
         Task newTask = new Todo(input);
         tasks.add(newTask);
         storage.save(tasks);
-        System.out.println(" Got it. I've added this task:\n "
-                + newTask
-                + "\n Now you have "
-                + tasks.size()
-                + " tasks in the list.");
+
+        return String.format(" Got it. I've added this task:\n %s\n Now you have %d tasks in the list.",
+                newTask, tasks.size());
     }
 }

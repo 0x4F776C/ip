@@ -50,6 +50,7 @@ public class EventCommand implements Command {
      *
      * @param tasks   The list of tasks to which the new event task will be added
      * @param storage The data persistence mechanism used to save the updated task list
+     * @return String containing the command's output message
      * @throws InvalidFormatException if the input string does not contain the "/from" and "/to" delimiter
      *                                or is not in the correct format
      * @throws IOException            if there is an error saving the task list to storage
@@ -57,16 +58,15 @@ public class EventCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
         if (!input.contains("/from") || !input.contains("/to")) {
             throw new InvalidFormatException("Please use the format: event /from <start> /to <end>");
         }
         Task newTask = new Event(input);
         tasks.add(newTask);
         storage.save(tasks);
-        System.out.println(" Got it. I've added this task:\n  " + newTask
-                + "\n Now you have "
-                + tasks.size()
-                + " tasks in the list.");
+
+        return String.format(" Got it. I've added this task:\n  %s\n Now you have %d tasks in the list.",
+                newTask, tasks.size());
     }
 }

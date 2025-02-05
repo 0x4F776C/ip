@@ -47,19 +47,21 @@ public class ListCommand implements Command {
      *
      * @param tasks   The list of tasks to be displayed
      * @param storage The data persistence mechanism (unused in this implementation)
+     * @return String containing the command's output message
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) {
+    public String execute(List<Task> tasks, DataPersistence storage) {
         if (tasks.isEmpty()) {
-            System.out.println("List is empty!");
-            return;
+            return "List is empty!";
         }
+
         StringBuilder output = new StringBuilder(" Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             output.append(" ").append(i + 1).append(".").append(tasks.get(i)).append("\n");
         }
-        System.out.println("____________________________________________________________");
-        System.out.println(output.toString().trim());
-        System.out.println("____________________________________________________________");
+
+        return "____________________________________________________________\n"
+                + output.toString().trim() + "\n"
+                + "____________________________________________________________";
     }
 }

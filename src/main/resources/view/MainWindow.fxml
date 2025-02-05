@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="600.0" minWidth="400.0"
+            prefHeight="600.0" prefWidth="400.0"
+            stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.trashbot.ui.MainWindow">
+    <children>
+        <ScrollPane fx:id="scrollPane"
+                    fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="ALWAYS"
+                    styleClass="chat-scroll-pane"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.bottomAnchor="60.0">
+            <content>
+                <VBox fx:id="dialogContainer"
+                      spacing="10"
+                      styleClass="dialog-container"
+                      minHeight="-Infinity"/>
+            </content>
+        </ScrollPane>
+
+        <HBox alignment="CENTER"
+              spacing="10"
+              styleClass="input-area"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <children>
+                <TextField fx:id="userInput"
+                           promptText="Type your message here..."
+                           onAction="#handleUserInput"
+                           HBox.hgrow="ALWAYS"
+                           styleClass="input-field"/>
+                <Button fx:id="sendButton"
+                        mnemonicParsing="false"
+                        onAction="#handleUserInput"
+                        text="Send"
+                        styleClass="send-button"/>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

@@ -49,6 +49,7 @@ public class DeadlineCommand implements Command {
      *
      * @param tasks   The list of tasks to which the new deadline task will be added
      * @param storage The data persistence mechanism used to save the updated task list
+     * @return String containing the command's output message
      * @throws InvalidFormatException if the input string does not contain the "/by" delimiter
      *                                or is not in the correct format
      * @throws IOException            if there is an error saving the task list to storage
@@ -56,17 +57,15 @@ public class DeadlineCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
         if (!input.contains("/by")) {
             throw new InvalidFormatException("Please use the format: deadline <task> /by <due>");
         }
         Task newTask = new Deadline(input);
         tasks.add(newTask);
         storage.save(tasks);
-        System.out.println(" Got it. I've added this task:\n  "
-                + newTask
-                + "\n Now you have "
-                + tasks.size()
-                + " tasks in the list.");
+
+        return String.format(" Got it. I've added this task:\n  %s\n Now you have %d tasks in the list.",
+                newTask, tasks.size());
     }
 }

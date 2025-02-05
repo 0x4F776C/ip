@@ -1,22 +1,22 @@
 package org.trashbot.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Event;
 import org.trashbot.tasks.Task;
 import org.trashbot.tasks.Todo;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 class FileStorageTest {
     private FileStorage storage = new FileStorage("test.txt");
 
     @Test
-    void convertStringToTask_ValidTodo() {
+    void testConvertStringToValidTodo() {
         String input = "T | 1 | eat mee hoon kway";
         Task task = storage.convertStringToTask(input);
 
@@ -27,7 +27,7 @@ class FileStorageTest {
     }
 
     @Test
-    void convertStringToTask_ValidDeadline() {
+    void testConvertStringToValidDeadline() {
         String input = "D | 0 | watch netflix | Sep 11 2020 11:59pm";
         Task task = storage.convertStringToTask(input);
 
@@ -39,7 +39,7 @@ class FileStorageTest {
     }
 
     @Test
-    void convertStringToTask_ValidEvent() {
+    void testConvertStringToValidEvent() {
         String input = "E | 1 | dance with barney | 2pm | 4pm";
         Task task = storage.convertStringToTask(input);
 
@@ -52,21 +52,21 @@ class FileStorageTest {
     }
 
     @Test
-    void convertStringToTask_InvalidFormat() {
+    void testConvertStringWithInvalidFormat() {
         String input = "X | invalid | format";
         Task task = storage.convertStringToTask(input);
         assertNull(task);
     }
 
     @Test
-    void convertStringToTask_EmptyString() {
+    void testConvertEmptyString() {
         String input = "";
         Task task = storage.convertStringToTask(input);
         assertNull(task);
     }
 
     @Test
-    void convertStringToTask_MissingFields() {
+    void testConvertStringWithMissingFields() {
         String input = "D | 1 | die"; // Missing deadline
         Task task = storage.convertStringToTask(input);
         assertNull(task);

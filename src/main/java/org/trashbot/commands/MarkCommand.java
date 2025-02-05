@@ -40,17 +40,17 @@ public class MarkCommand implements Command {
     /**
      * Flag indicating whether to mark the task as done (true) or not done (false)
      */
-    private boolean markAsDone;
+    private boolean isMarkedAsDone;
 
     /**
      * Constructs a new MarkCommand for the specified task number and completion status.
      *
      * @param taskNum    The index of the task to be marked (0-based index)
-     * @param markAsDone True to mark the task as done, false to mark as not done
+     * @param isMarkedAsDone True to mark the task as done, false to mark as not done
      */
-    public MarkCommand(int taskNum, boolean markAsDone) {
+    public MarkCommand(int taskNum, boolean isMarkedAsDone) {
         this.taskNum = taskNum;
-        this.markAsDone = markAsDone;
+        this.isMarkedAsDone = isMarkedAsDone;
     }
 
     /**
@@ -63,6 +63,7 @@ public class MarkCommand implements Command {
      *
      * @param tasks   The list of tasks containing the task to be marked
      * @param storage The data persistence mechanism used to save the updated task list
+     * @return String containing the command's output message
      * @throws InvalidFormatException if the task number is out of range (less than 0 or
      *                                greater than or equal to the size of the task list)
      * @throws IOException            if there is an error saving the task list to storage
@@ -71,21 +72,23 @@ public class MarkCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
         if (taskNum < 0 || taskNum >= tasks.size()) {
             throw new InvalidFormatException("Task number must be between 1 and " + tasks.size());
         }
 
         Task task = tasks.get(taskNum);
+        String message;
 
-        if (markAsDone) {
+        if (isMarkedAsDone) {
             task.markAsDone();
-            System.out.println(" Nice! I've marked this task as done:\n  " + task);
+            message = String.format(" Nice! I've marked this task as done:\n  %s", task);
         } else {
             task.markAsNotDone();
-            System.out.println(" Okay, I've marked this task as not done:\n  " + task);
+            message = String.format(" Okay, I've marked this task as not done:\n  %s", task);
         }
 
         storage.save(tasks);
+        return message;
     }
 }
