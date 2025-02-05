@@ -16,7 +16,6 @@ import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.UnknownInputException;
 import org.trashbot.storage.FileStorage;
 import org.trashbot.tasks.Task;
-import org.trashbot.ui.TrashBotUI;
 
 /**
  * The TrashBot class represents the core of the TrashBot application.
@@ -29,6 +28,7 @@ import org.trashbot.ui.TrashBotUI;
 public class TrashBot {
     private List<Task> tasks;
     private FileStorage storage;
+    private StringBuilder currentResponse = new StringBuilder();
 
     /**
      * Constructs a new TrashBot instance and initializes it with a storage file.
@@ -40,6 +40,12 @@ public class TrashBot {
     public TrashBot(String storageFilePath) throws IOException {
         this.storage = new FileStorage(storageFilePath);
         this.tasks = storage.load();
+    }
+
+    public String getResponse(String input) {
+        String response = currentResponse.toString();
+        currentResponse.setLength(0);
+        return response.isEmpty() ? "I've processed your command." : response;
     }
 
     /**
@@ -54,11 +60,12 @@ public class TrashBot {
     public void processCommand(String input) {
         try {
             Command command = parseCommand(input);
-            command.execute(tasks, storage);
+            String commandOutput = command.execute(tasks, storage);
+            currentResponse.append(commandOutput);
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            currentResponse.append(e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            currentResponse.append("Error: ").append(e.getMessage());
         }
     }
 
@@ -98,26 +105,6 @@ public class TrashBot {
             return new ByeCommand();
         default:
             throw new UnknownInputException(commandType);
-        }
-    }
-
-    /**
-     * The main entry point of the TrashBot application.
-     * Initializes the TrashBot instance and launches the user interface.
-     * <p>
-     * If the initialization fails, an error message is displayed and the program exits.
-     * </p>
-     *
-     * @param args command-line arguments (not used)
-     */
-    public static void main(String[] args) {
-        try {
-            TrashBot trashBot = new TrashBot("./data/TrashBot.sav");
-            TrashBotUI ui = new TrashBotUI(trashBot);
-            ui.run();
-        } catch (IOException e) {
-            System.out.println("Initialization failed: " + e.getMessage());
-            System.exit(1);
         }
     }
 }

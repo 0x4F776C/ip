@@ -1,40 +1,34 @@
 package org.trashbot.ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.trashbot.core.TrashBot;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
 /**
  * The MainWindow class controls the user interface of the TrashBot application.
  * It handles user input, displays output, and interacts with the TrashBot logic.
  */
 public class MainWindow {
-
     @FXML
-    private TextArea outputArea;
-
+    private ScrollPane scrollPane;
+    @FXML
+    private VBox dialogContainer;
     @FXML
     private TextField userInput;
-
-    @FXML
-    private Button sendButton;
-
     private TrashBot trashBot;
-    private ByteArrayOutputStream outputStream;
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/man.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
     /**
      * Initializes the MainWindow by setting up an output stream to capture TrashBot output.
      */
     @FXML
     public void initialize() {
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     /**
@@ -44,7 +38,7 @@ public class MainWindow {
      */
     public void setTrashBot(TrashBot tb) {
         trashBot = tb;
-        displayOutput(" Hello! I'm TrashBot\n What can I do you for?\n");
+        addBotMessage("Hello! I'm TrashBot\nWhat can I do for you?");
     }
 
     /**
@@ -54,22 +48,37 @@ public class MainWindow {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText().trim();
-        if (!input.isEmpty()) {
-            displayOutput("\n> " + input);
-            outputStream.reset();
-            trashBot.processCommand(input);
-            displayOutput(outputStream.toString());
-            userInput.clear();
+        if (input.isEmpty()) {
+            return;
         }
+        
+        addUserMessage(input);
+
+        try {
+            trashBot.processCommand(input);
+
+            String response = trashBot.getResponse(input);
+            if (response != null && !response.trim().isEmpty()) {
+                if (response.equals("END_PROGRAM")) {
+                    System.exit(0);
+                } else {
+                    addBotMessage(response);
+                }
+            }
+        } catch (Exception e) {
+            addBotMessage("Error: " + e.getMessage());
+        }
+
+        userInput.clear();
     }
 
-    /**
-     * Appends output to the TextArea and scrolls to the bottom.
-     *
-     * @param output The text to be displayed in the output area.
-     */
-    private void displayOutput(String output) {
-        outputArea.appendText(output);
-        outputArea.setScrollTop(Double.MAX_VALUE);
+    private void addUserMessage(String message) {
+        DialogBox dialogBox = DialogBox.getUserDialog(message, userImage);
+        dialogContainer.getChildren().add(dialogBox);
+    }
+
+    private void addBotMessage(String message) {
+        DialogBox dialogBox = DialogBox.getDukeDialog(message, dukeImage);
+        dialogContainer.getChildren().add(dialogBox);
     }
 }

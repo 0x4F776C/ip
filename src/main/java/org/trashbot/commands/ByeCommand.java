@@ -20,9 +20,10 @@ public class ByeCommand implements Command {
      *
      * @param tasks the current list of tasks (not used in this command)
      * @param storage the data persistence object (not used in this command)
+     * @return String containing the command's output message
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) {
-        System.exit(0);
+    public String execute(List<Task> tasks, DataPersistence storage) {
+        return "END_PROGRAM";
     }
 }

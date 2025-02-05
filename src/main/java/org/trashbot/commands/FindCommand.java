@@ -45,17 +45,18 @@ public class FindCommand implements Command {
      *
      * @param tasks   The list of tasks to search through
      * @param storage The data persistence mechanism (unused in this implementation)
+     * @return String containing the command's output message
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) {
+    public String execute(List<Task> tasks, DataPersistence storage) {
         List<Task> matchingTasks = tasks.stream()
                 .filter(task -> task.getDescription().toLowerCase().contains(term))
                 .toList();
 
         if (matchingTasks.isEmpty()) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" No matching tasks found!");
-            System.out.println("____________________________________________________________");
+            return "____________________________________________________________\n"
+                    + " No matching tasks found!\n"
+                    + "____________________________________________________________";
         }
 
         StringBuilder output = new StringBuilder(" Here are the matching tasks in the list:\n");
@@ -63,8 +64,8 @@ public class FindCommand implements Command {
             output.append(" ").append(tasks.indexOf(task) + 1).append(".").append(task).append("\n");
         }
 
-        System.out.println("____________________________________________________________");
-        System.out.println(output.toString().trim());
-        System.out.println("____________________________________________________________");
+        return "____________________________________________________________\n"
+                + output.toString().trim() + "\n"
+                + "____________________________________________________________";
     }
 }

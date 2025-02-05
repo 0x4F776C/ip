@@ -27,28 +27,44 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            // Initialize TrashBot
             trashBot = new TrashBot("./data/TrashBot.sav");
 
-            // Load FXML
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            if (fxmlLoader.getLocation() == null) {
+                System.out.println("Error: Cannot find MainWindow.fxml");
+                return;
+            }
+
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
 
-            // Setup stage
-            stage.getIcons().add(new Image("file:icon.png"));
+            String cssPath = "/view/style.css";
+            String css = getClass().getResource(cssPath).toExternalForm();
+            scene.getStylesheets().add(css);
+
+            try {
+                stage.getIcons().add(new Image("/images/eyecon.png"));
+            } catch (Exception e) {
+                System.out.println("Error loading icon: " + e.getMessage());
+            }
+
             stage.setTitle("TrashBot Task Manager");
             stage.setScene(scene);
             stage.setMinWidth(400);
             stage.setMinHeight(300);
 
-            // Inject TrashBot instance into controller
+
             MainWindow controller = fxmlLoader.getController();
+            if (controller == null) {
+                System.out.println("Error: Controller is null");
+                return;
+            }
             controller.setTrashBot(trashBot);
 
-            // Show the window
+
             stage.show();
         } catch (IOException e) {
+            System.out.println("Error starting application: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -50,24 +50,22 @@ public class DeleteCommand implements Command {
      *
      * @param tasks   The list of tasks from which a task will be deleted
      * @param storage The data persistence mechanism used to save the updated task list
+     * @return String containing the command's output message
      * @throws InvalidFormatException if the task ID is out of range (less than 0 or
      *                                greater than or equal to the size of the task list)
      * @throws IOException            if there is an error saving the task list to storage
      * @see DataPersistence#save(List)
      */
     @Override
-    public void execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
         if (taskId < 0 || taskId >= tasks.size()) {
-            throw new InvalidFormatException("Task number must be between 1 and "
-                    + tasks.size());
+            throw new InvalidFormatException("Task number must be between 1 and " + tasks.size());
         }
 
         Task removeTask = tasks.remove(taskId);
         storage.save(tasks);
-        System.out.println(" Got it. I've removed this task: \n "
-                + removeTask
-                + "\n Now you have "
-                + tasks.size()
-                + " tasks in the list.");
+
+        return String.format(" Got it. I've removed this task: \n %s\n Now you have %d tasks in the list.",
+                removeTask, tasks.size());
     }
 }
