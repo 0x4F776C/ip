@@ -24,7 +24,7 @@ public class Todo extends Task {
      * @param input The raw input string in the format "todo &lt;description&gt;"
      */
     public Todo(String input) {
-        super(input.substring(5)); // get rid of "todo "
+        super(input.substring(5));
     }
 
     @Override
