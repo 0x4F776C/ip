@@ -21,8 +21,8 @@ public class Deadline extends Task {
      *              "deadline &lt;description&gt; /by &lt;deadline&gt;".
      */
     public Deadline(String input) {
-        super(input.substring(9, input.indexOf("/by")).trim()); // get description
-        this.by = input.substring(input.indexOf("/by") + 4).trim(); // get deadline
+        super(input.substring(9, input.indexOf("/by")).trim());
+        this.by = input.substring(input.indexOf("/by") + 4).trim();
     }
 
     /**
@@ -34,31 +34,30 @@ public class Deadline extends Task {
     public String getDateTime() {
         try {
             DateTimeFormatter[] inputFormatters = {
-                    DateTimeFormatter.ofPattern("MMM dd yyyy h:mma"), // SEP 11 2001 1:33am
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm") // 2001-09-11 0133
+                    DateTimeFormatter.ofPattern("MMM dd yyyy h:mma"),
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")
             };
 
             LocalDateTime dateTime = null;
-            for (DateTimeFormatter formatter : inputFormatters) { // try all datetime format
+            for (DateTimeFormatter formatter : inputFormatters) {
                 try {
                     dateTime = LocalDateTime.parse(by, formatter);
                     break;
                 } catch (DateTimeParseException e) {
-                    // I give up
+                    e.printStackTrace();
                 }
             }
 
-            if (dateTime == null) { // if the format don't match, datetime will still be null and die
+            if (dateTime == null) {
                 throw new DateTimeParseException("Unable to parse date", by, 0);
             }
 
-            // if all goes well, return the datetime :D
             return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
                     + " "
                     + dateTime.format(DateTimeFormatter.ofPattern("h:mma")).toLowerCase();
         } catch (Exception e) {
             e.printStackTrace();
-            return by; // use the original input if ALL ELSE FAILS
+            return by;
         }
     }
 
