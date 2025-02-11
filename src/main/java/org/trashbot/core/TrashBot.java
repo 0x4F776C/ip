@@ -72,6 +72,9 @@ public class TrashBot {
      * @param input the command string from the user
      */
     public void processCommand(String input) {
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
+
         try {
             executeCommand(input);
         } catch (DukeException | IOException e) {
@@ -119,8 +122,16 @@ public class TrashBot {
      * @throws UnknownInputException if the command type is not recognized or input is invalid
      */
     private Command parseCommand(String input) throws UnknownInputException {
+<<<<<<< HEAD
         checkInput(input);
         CommandType type = getCommandType(input);
+=======
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
+
+        String[] parts = input.split(" ", 2);
+        String commandType = parts[0].toLowerCase();
+>>>>>>> cb80c52 (Add assertion to check for empty or null input)
 
         return generateCommand(type, input);
     }
