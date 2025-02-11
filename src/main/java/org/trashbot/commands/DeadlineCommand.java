@@ -58,6 +58,9 @@ public class DeadlineCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+        assert tasks != null : "List cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         if (!input.contains("/by")) {
             throw new InvalidFormatException("Please use the format: deadline <task> /by <due>");
         }
