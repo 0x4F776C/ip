@@ -122,16 +122,10 @@ public class TrashBot {
      * @throws UnknownInputException if the command type is not recognized or input is invalid
      */
     private Command parseCommand(String input) throws UnknownInputException {
-<<<<<<< HEAD
         checkInput(input);
         CommandType type = getCommandType(input);
-=======
-        assert input != null : "Input cannot be null";
-        assert !input.trim().isEmpty() : "Input cannot be empty";
 
-        String[] parts = input.split(" ", 2);
-        String commandType = parts[0].toLowerCase();
->>>>>>> cb80c52 (Add assertion to check for empty or null input)
+        assert !input.trim().isEmpty() : "Input cannot be empty";
 
         return generateCommand(type, input);
     }
@@ -227,9 +221,9 @@ public class TrashBot {
      */
     private MarkCommand generateMarkCommand(String input, boolean isDone) throws UnknownInputException {
         try {
-            int Id = getTaskId(input);
+            int taskId = getTaskId(input);
 
-            return new MarkCommand(Id - 1, isDone);
+            return new MarkCommand(taskId - 1, isDone);
         } catch (NumberFormatException e) {
             throw new UnknownInputException("Task number does not exist");
         }
