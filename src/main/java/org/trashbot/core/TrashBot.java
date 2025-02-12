@@ -1,6 +1,7 @@
 package org.trashbot.core;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.trashbot.commands.ByeCommand;
@@ -197,12 +198,26 @@ public class TrashBot {
      * @throws UnknownInputException if the task ID is invalid or missing
      */
     private DeleteCommand generateDeleteCommand(String input) throws UnknownInputException {
-        try {
-            int taskId = getTaskId(input);
+        assert input != null : "Input cannot be null";
 
-            return new DeleteCommand(taskId - 1);
+        try {
+            String[] parts = input.split(" ", 2);
+            if (parts.length < 2) {
+                throw new UnknownInputException("Please specify task number(s) to delete");
+            }
+
+            String[] taskIdStrings = parts[1].trim().split("\\s+");
+            int[] taskIds = Arrays.stream(taskIdStrings)
+                    .mapToInt(idStr -> Integer.parseInt(idStr) - 1)
+                    .toArray();
+
+            if (taskIds.length == 0) {
+                throw new UnknownInputException("Please specify task number(s) to delete");
+            }
+
+            return new DeleteCommand(taskIds);
         } catch (NumberFormatException e) {
-            throw new UnknownInputException("Task number does not exist");
+            throw new UnknownInputException("Invalid task number format");
         }
     }
 

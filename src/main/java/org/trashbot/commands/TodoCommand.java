@@ -77,7 +77,7 @@ public class TodoCommand implements Command {
         tasks.add(newTask);
         storage.save(tasks);
 
-        return String.format(" Got it. I've added this task:\n %s\n Now you have %d tasks in the list.",
+        return String.format(" Got it. I've added this task:\n  %s\n Now you have %d tasks in the list.",
                 newTask, tasks.size());
     }
 }
