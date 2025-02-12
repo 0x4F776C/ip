@@ -58,6 +58,9 @@ public class TrashBot {
      * @param input the command string from the user
      */
     public void processCommand(String input) {
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
+
         try {
             Command command = parseCommand(input);
             String commandOutput = command.execute(tasks, storage);
@@ -81,6 +84,9 @@ public class TrashBot {
      * @throws UnknownInputException if the command type is not recognized
      */
     private Command parseCommand(String input) throws UnknownInputException {
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
+
         String[] parts = input.split(" ", 2);
         String commandType = parts[0].toLowerCase();
 
