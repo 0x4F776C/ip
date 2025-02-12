@@ -56,7 +56,7 @@ public class MainWindow {
         try {
             trashBot.processCommand(input);
 
-            String response = trashBot.getResponse(input);
+            String response = trashBot.getResponse();
             if (response != null && !response.trim().isEmpty()) {
                 if (response.equals("END_PROGRAM")) {
                     System.exit(0);
