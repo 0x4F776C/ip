@@ -28,6 +28,7 @@ import org.trashbot.tasks.Task;
  * @see Deadline
  */
 public class DeadlineCommand implements Command {
+    private static final String STRING_BY = "/by";
     private final String input;
 
     /**
@@ -58,10 +59,14 @@ public class DeadlineCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
-        if (!input.contains("/by")) {
+        assert tasks != null : "List cannot be null";
+        assert storage != null : "Storage cannot be null";
+
+        if (!input.contains(STRING_BY)) {
             throw new InvalidFormatException("Please use the format: deadline <task> /by <due>");
         }
         Task newTask = new Deadline(input);
+
         tasks.add(newTask);
         storage.save(tasks);
 

@@ -72,6 +72,9 @@ public class TrashBot {
      * @param input the command string from the user
      */
     public void processCommand(String input) {
+        assert input != null : "Input cannot be null";
+        assert !input.trim().isEmpty() : "Input cannot be empty";
+
         try {
             executeCommand(input);
         } catch (DukeException | IOException e) {

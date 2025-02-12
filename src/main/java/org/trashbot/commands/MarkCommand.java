@@ -73,6 +73,10 @@ public class MarkCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+        assert tasks != null : "List cannot be null";
+        assert storage != null : "Storage cannot be null";
+        assert !tasks.isEmpty() : "Cannot mark task in empty list";
+
         if (taskNum < 0 || taskNum >= tasks.size()) {
             throw new InvalidFormatException("Task number must be between 1 and " + tasks.size());
         }

@@ -41,6 +41,14 @@ public class Event extends Task {
      */
     public Event(String input) {
         super(input.substring(6, input.indexOf("/from")).trim());
+
+        assert input
+                .contains("/from")
+                && input
+                .contains("/to")
+                :
+                "Event must contain both /from and /to time specifications";
+
         String timeInfo = input.substring(input.indexOf("/from"));
         this.from = timeInfo.substring(6, timeInfo.indexOf("/to")).trim();
         this.to = timeInfo.substring(timeInfo.indexOf("/to") + 4).trim();

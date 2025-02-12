@@ -29,6 +29,8 @@ import org.trashbot.tasks.Task;
  * @see Event
  */
 public class EventCommand implements Command {
+    private static final String STRING_FROM = "/from";
+    private static final String STRING_TO = "/to";
     private final String input;
 
     /**
@@ -59,7 +61,7 @@ public class EventCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
-        if (!input.contains("/from") || !input.contains("/to")) {
+        if (!input.contains(STRING_FROM) || !input.contains(STRING_TO)) {
             throw new InvalidFormatException("Please use the format: event /from <start> /to <end>");
         }
         Task newTask = new Event(input);
