@@ -24,7 +24,7 @@ import org.trashbot.tasks.Task;
  * @see Task
  */
 public class FindCommand implements Command {
-    private String term;
+    private final String term;
 
     /**
      * Constructs a new FindCommand with the specified search term.

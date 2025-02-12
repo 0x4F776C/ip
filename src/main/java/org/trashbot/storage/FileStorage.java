@@ -125,7 +125,7 @@ public class FileStorage implements DataPersistence {
      */
     protected Task convertStringToTask(String str) {
         try {
-            String[] parts = str.split(" \\| ", -1); // use "-1" to keep empty strings; OMG THIS WORKS
+            String[] parts = str.split(" \\| ", -1);
 
             if (parts.length < 3) {
                 return null;

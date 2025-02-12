@@ -40,10 +40,10 @@ public class Event extends Task {
      * @param input the raw input string in the format "event &lt;description&gt; /from &lt;start&gt; /to &lt;end&gt;"
      */
     public Event(String input) {
-        super(input.substring(6, input.indexOf("/from")).trim()); // get description
-        String timeInfo = input.substring(input.indexOf("/from")); // get time - overall
-        this.from = timeInfo.substring(6, timeInfo.indexOf("/to")).trim(); // get from
-        this.to = timeInfo.substring(timeInfo.indexOf("/to") + 4).trim(); // get to
+        super(input.substring(6, input.indexOf("/from")).trim());
+        String timeInfo = input.substring(input.indexOf("/from"));
+        this.from = timeInfo.substring(6, timeInfo.indexOf("/to")).trim();
+        this.to = timeInfo.substring(timeInfo.indexOf("/to") + 4).trim();
     }
 
     /**
