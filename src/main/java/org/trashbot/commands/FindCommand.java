@@ -24,7 +24,7 @@ import org.trashbot.tasks.Task;
  * @see Task
  */
 public class FindCommand implements Command {
-    private String term;
+    private final String searchTerm;
 
     /**
      * Constructs a new FindCommand with the specified search term.
@@ -33,7 +33,7 @@ public class FindCommand implements Command {
      *             in the format "find searchTerm"
      */
     public FindCommand(String term) {
-        this.term = term.substring(5).trim().toLowerCase();
+        this.searchTerm = term.substring(5).trim().toLowerCase();
     }
 
     /**
@@ -50,7 +50,7 @@ public class FindCommand implements Command {
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) {
         List<Task> matchingTasks = tasks.stream()
-                .filter(task -> task.getDescription().toLowerCase().contains(term))
+                .filter(task -> task.getDescription().toLowerCase().contains(searchTerm))
                 .toList();
 
         if (matchingTasks.isEmpty()) {
