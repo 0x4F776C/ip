@@ -66,6 +66,7 @@ public class DeadlineCommand implements Command {
             throw new InvalidFormatException("Please use the format: deadline <task> /by <due>");
         }
         Task newTask = new Deadline(input);
+
         tasks.add(newTask);
         storage.save(tasks);
 
