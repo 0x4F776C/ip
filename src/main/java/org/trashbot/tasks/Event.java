@@ -24,14 +24,24 @@ package org.trashbot.tasks;
  */
 public class Event extends Task {
     /**
+     * The string value for /from
+     */
+    private static final String STRING_FROM = "/from";
+
+    /**
+     * The string value for /to
+     */
+    private static final String STRING_TO = "/to";
+
+    /**
      * The start time
      */
-    protected final String from;
+    private final String from;
 
     /**
      * The end time
      */
-    protected final String to;
+    private final String to;
 
     /**
      * Constructs a new Event by parsing the input string to extract description
@@ -40,18 +50,18 @@ public class Event extends Task {
      * @param input the raw input string in the format "event &lt;description&gt; /from &lt;start&gt; /to &lt;end&gt;"
      */
     public Event(String input) {
-        super(input.substring(6, input.indexOf("/from")).trim());
+        super(input.substring(6, input.indexOf(STRING_FROM)).trim());
 
         assert input
-                .contains("/from")
+                .contains(STRING_FROM)
                 && input
-                .contains("/to")
+                .contains(STRING_TO)
                 :
                 "Event must contain both /from and /to time specifications";
 
-        String timeInfo = input.substring(input.indexOf("/from"));
-        this.from = timeInfo.substring(6, timeInfo.indexOf("/to")).trim();
-        this.to = timeInfo.substring(timeInfo.indexOf("/to") + 4).trim();
+        String timeInfo = input.substring(input.indexOf(STRING_FROM));
+        this.from = timeInfo.substring(6, timeInfo.indexOf(STRING_TO)).trim();
+        this.to = timeInfo.substring(timeInfo.indexOf(STRING_TO) + 4).trim();
     }
 
     /**

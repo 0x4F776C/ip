@@ -3,8 +3,9 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
+import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.exceptions.InvalidFormatException;
+import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Event;
 import org.trashbot.tasks.Task;
 
@@ -60,10 +61,16 @@ public class EventCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage)
+            throws InvalidFormatException, EmptyDescriptionException, IOException {
         if (!input.contains(STRING_FROM) || !input.contains(STRING_TO)) {
             throw new InvalidFormatException("Please use the format: event /from <start> /to <end>");
         }
+
+        if (input.trim().length() < 16) {
+            throw new EmptyDescriptionException("event");
+        }
+
         Task newTask = new Event(input);
         tasks.add(newTask);
         storage.save(tasks);

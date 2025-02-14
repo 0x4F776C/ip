@@ -3,8 +3,8 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.DukeException;
+import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Task;
 
 /**

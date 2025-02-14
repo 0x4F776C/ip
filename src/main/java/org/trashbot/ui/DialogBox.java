@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
  * This class is used for displaying user and bot (Duke) messages in the UI.
  */
 public class DialogBox extends HBox {
-
     @FXML
     private Label dialog;
 

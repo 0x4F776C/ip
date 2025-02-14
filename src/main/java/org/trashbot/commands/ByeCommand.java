@@ -2,7 +2,7 @@ package org.trashbot.commands;
 
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
+import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Task;
 
 /**
@@ -11,6 +11,11 @@ import org.trashbot.tasks.Task;
  * exiting the program when executed.
  */
 public class ByeCommand implements Command {
+    /**
+     * Fixed string to show the end of program/
+     */
+    private static final String STRING_END_OF_PROGRAM = "END_PROGRAM";
+
     /**
      * Executes the command, which terminates the program.
      * <p>
@@ -24,6 +29,6 @@ public class ByeCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage) {
-        return "END_PROGRAM";
+        return STRING_END_OF_PROGRAM;
     }
 }

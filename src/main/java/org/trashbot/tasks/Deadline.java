@@ -10,7 +10,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
     /**
-     * The deadline for the task in string format.
+     * The string value for /by.
+     */
+    private static final String STRING_BY = "/by";
+
+    /**
+     * This variable will store the actual value of /by.
      */
     protected final String by;
 
@@ -21,8 +26,8 @@ public class Deadline extends Task {
      *              "deadline &lt;description&gt; /by &lt;deadline&gt;".
      */
     public Deadline(String input) {
-        super(input.substring(9, input.indexOf("/by")).trim());
-        this.by = input.substring(input.indexOf("/by") + 4).trim();
+        super(input.substring(9, input.indexOf(STRING_BY)).trim());
+        this.by = input.substring(input.indexOf(STRING_BY) + 4).trim();
     }
 
     /**

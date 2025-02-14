@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Event;
 import org.trashbot.tasks.Task;
@@ -46,11 +45,11 @@ public class FileStorage implements DataPersistence {
             Files.createDirectories(directory);
         }
 
-        try (FileWriter fileWriter = new FileWriter(filePath);
-             BufferedWriter writer = new BufferedWriter(fileWriter)) {
+        try (FileWriter fw = new FileWriter(filePath);
+             BufferedWriter bw = new BufferedWriter(fw)) {
             for (Task task : tasks) {
-                writer.write(convertTaskToString(task));
-                writer.newLine();
+                bw.write(convertTaskToString(task));
+                bw.newLine();
             }
         }
     }
@@ -64,21 +63,21 @@ public class FileStorage implements DataPersistence {
      */
     public List<Task> load() throws IOException {
         List<Task> tasks = new ArrayList<>();
-        Path p = Paths.get(filePath);
+        Path path = Paths.get(filePath);
 
-        if (!Files.exists(p)) {
+        if (!Files.exists(path)) {
             if (!Files.exists(directory)) {
                 Files.createDirectories(directory);
             }
-            Files.createFile(p);
+            Files.createFile(path);
             return tasks;
         }
 
         try (FileReader fr = new FileReader(filePath);
              BufferedReader br = new BufferedReader(fr)) {
-            String str;
-            while ((str = br.readLine()) != null && !str.trim().isEmpty()) {
-                Task task = convertStringToTask(str.trim());
+            String line;
+            while ((line = br.readLine()) != null && !line.trim().isEmpty()) {
+                Task task = convertStringToTask(line.trim());
                 if (task != null) {
                     tasks.add(task);
                 }
@@ -105,12 +104,23 @@ public class FileStorage implements DataPersistence {
             sb.append("E");
         }
 
-        sb.append(" | ").append(task.isDone() ? "1" : "0").append(" | ").append(task.getDescription());
+        sb.append(" | ").append(task.isDone()
+                ? "1"
+                : "0")
+                .append(" | ")
+                .append(task.getDescription());
 
         if (task instanceof Deadline) {
-            sb.append(" | ").append(((Deadline) task).getDateTime());
+            sb.append(" | ")
+                    .append(((Deadline) task)
+                            .getDateTime());
         } else if (task instanceof Event) {
-            sb.append(" | ").append(((Event) task).getFrom()).append(" | ").append(((Event) task).getTo());
+            sb.append(" | ")
+                    .append(((Event) task)
+                            .getFrom())
+                    .append(" | ")
+                    .append(((Event) task)
+                            .getTo());
         }
 
         return sb.toString();
@@ -120,57 +130,62 @@ public class FileStorage implements DataPersistence {
      * Converts a string representation back to a Task object.
      * Handles Todo, Deadline, and Event task types.
      *
-     * @param str string representation of task
+     * @param line string representation of task
      * @return task object or null if conversion fails
      */
-    protected Task convertStringToTask(String str) {
+    protected Task convertStringToTask(String line) {
         try {
-            String[] parts = str.split(" \\| ", -1);
+            String[] parts = line.split(" \\| ", -1);
 
             if (parts.length < 3) {
                 return null;
             }
 
-            String taskType = parts[0];
-            boolean isDone = parts[1].equals("1");
-            String description = parts[2];
-            Task task;
+            return getTaskTypeReturn(parts);
 
-            switch (taskType) {
-            case "T":
-                task = new Todo("todo "
-                        + description);
-                break;
-            case "D":
-                if (parts.length < 4) {
-                    return null;
-                }
-                task = new Deadline("deadline "
-                        + description
-                        + " /by "
-                        + parts[3]);
-                break;
-            case "E":
-                if (parts.length < 5) {
-                    return null;
-                }
-                task = new Event("event "
-                        + description
-                        + " /from "
-                        + parts[3]
-                        + " /to "
-                        + parts[4]);
-                break;
-            default:
-                return null;
-            }
-            if (isDone) {
-                task.markAsDone();
-            }
-            return task;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private Task getTaskTypeReturn(String[] parts) {
+        String taskType = parts[0];
+        boolean isDone = parts[1].equals("1");
+        String description = parts[2];
+        Task task = null;
+
+        switch (taskType) {
+        case "T":
+            task = new Todo("todo "
+                    + description);
+            break;
+        case "D":
+            if (parts.length < 4) {
+                return task;
+            }
+            task = new Deadline("deadline "
+                    + description
+                    + " /by "
+                    + parts[3]);
+            break;
+        case "E":
+            if (parts.length < 5) {
+                return task;
+            }
+            task = new Event("event "
+                    + description
+                    + " /from "
+                    + parts[3]
+                    + " /to "
+                    + parts[4]);
+            break;
+        default:
+            return task;
+        }
+        if (isDone) {
+            task.markAsDone();
+        }
+        return task;
     }
 }

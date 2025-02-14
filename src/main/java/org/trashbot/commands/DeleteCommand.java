@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.trashbot.core.DataPersistence;
 import org.trashbot.exceptions.InvalidFormatException;
+import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Task;
 
 /**

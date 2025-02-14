@@ -1,4 +1,4 @@
-package org.trashbot.core;
+package org.trashbot.storage;
 
 import java.io.IOException;
 import java.util.List;

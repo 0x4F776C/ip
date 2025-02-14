@@ -16,8 +16,6 @@ import javafx.stage.Stage;
  * It initializes the TrashBot instance, loads the user interface, and sets up the primary stage.
  */
 public class Main extends Application {
-    private TrashBot trashBot;
-
     /**
      * Starts the JavaFX application by initializing TrashBot, loading the FXML layout,
      * and displaying the main window.
@@ -27,7 +25,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            trashBot = new TrashBot("./data/TrashBot.sav");
+            TrashBot trashBot = new TrashBot("./data/TrashBot.sav");
 
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             if (fxmlLoader.getLocation() == null) {
@@ -48,7 +46,7 @@ public class Main extends Application {
                 System.out.println("Error loading icon: " + e.getMessage());
             }
 
-            stage.setTitle("TrashBot Task Manager");
+            stage.setTitle("TrashBot");
             stage.setScene(scene);
             stage.setMinWidth(400);
             stage.setMinHeight(300);

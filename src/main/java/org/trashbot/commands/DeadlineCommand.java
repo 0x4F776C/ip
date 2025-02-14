@@ -3,8 +3,9 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
-import org.trashbot.core.DataPersistence;
+import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.exceptions.InvalidFormatException;
+import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Task;
 
@@ -58,13 +59,19 @@ public class DeadlineCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public String execute(List<Task> tasks, DataPersistence storage) throws InvalidFormatException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage)
+            throws InvalidFormatException, EmptyDescriptionException, IOException {
         assert tasks != null : "List cannot be null";
         assert storage != null : "Storage cannot be null";
 
         if (!input.contains(STRING_BY)) {
             throw new InvalidFormatException("Please use the format: deadline <task> /by <due>");
         }
+
+        if (input.trim().length() < 13) {
+            throw new EmptyDescriptionException("deadline");
+        }
+
         Task newTask = new Deadline(input);
 
         tasks.add(newTask);
