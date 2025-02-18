@@ -7,7 +7,7 @@ TrashBot is designed to keep track of your daily tasks, deadlines, and events. W
 ## Quick Start
 
 1. Ensure you have Java 17 installed on your computer
-2. Download the latest `TrashBot.jar` from our [releases page](<https://0x4F776C/ip/releases>)
+2. Download the latest `TrashBot.jar` from the release page
 3. Open a command terminal and navigate to the folder containing the JAR file
 4. Run the application with `java -jar TrashBot.jar`
 5. Start managing your tasks with the commands listed in the Features section
