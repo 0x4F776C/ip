@@ -177,18 +177,13 @@ Expected outcome:
 ## FAQ
 
 **Q: Will TrashBot work on my operating system?**  
-A: TrashBot is compatible with Windows, macOS, and Linux systems that have Java 11 or higher installed.
+A: TrashBot is compatible with Windows, macOS, and Linux systems that have Java 17.
 
 **Q: Are my tasks saved automatically?**  
 A: Yes, tasks are automatically saved after each command. You can safely exit using the `bye` command, knowing your data is secure.
 
 **Q: Can I backup my task data?**  
-A: Yes, your tasks are stored in a file named `trashbot-data.txt` in the same directory as the application. You can copy this file to create backups.
-
-## Known Issues
-
-* Date parsing may not work correctly if the system locale does not match the expected format.
-* Very long task descriptions (> 100 characters) may be truncated in the display.
+A: Yes, your tasks are stored in a file named `trashbot.sav` in `/data/` which is in the same directory as the application. You can copy this file to create backups.
 
 ## Glossary
 
