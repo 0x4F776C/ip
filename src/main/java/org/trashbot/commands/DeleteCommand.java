@@ -87,7 +87,7 @@ public class DeleteCommand implements Command {
                 .map(Task::toString)
                 .collect(Collectors.joining("\n"));
 
-        return String.format(" Got it. I've removed these tasks: \n%s\n Now you have %d tasks in the list.",
+        return String.format(" Got it. I've removed these tasks:\n  %s\n Now you have %d tasks in the list.",
                 removedTasksMessage, tasks.size());
     }
 }
