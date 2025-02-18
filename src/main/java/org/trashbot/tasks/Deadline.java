@@ -39,6 +39,7 @@ public class Deadline extends Task {
     public String getDateTime() {
         try {
             DateTimeFormatter[] inputFormatters = {
+                    DateTimeFormatter.ofPattern("MMM d yyyy h:mma"),
                     DateTimeFormatter.ofPattern("MMM dd yyyy h:mma"),
                     DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm")
             };
@@ -49,7 +50,7 @@ public class Deadline extends Task {
                     dateTime = LocalDateTime.parse(by, formatter);
                     break;
                 } catch (DateTimeParseException e) {
-                    e.printStackTrace();
+                    continue;
                 }
             }
 
