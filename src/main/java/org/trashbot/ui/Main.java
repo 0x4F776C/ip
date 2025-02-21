@@ -73,7 +73,7 @@ public class Main extends Application {
             stage.show();
         } catch (IOException e) {
             System.out.println("Error starting application: " + e.getMessage());
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

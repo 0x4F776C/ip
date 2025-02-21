@@ -1,7 +1,6 @@
 package org.trashbot.core;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import org.trashbot.commands.ByeCommand;
@@ -59,7 +58,9 @@ public class TrashBot {
     public String getResponse() {
         String response = currentResponse.toString();
         currentResponse.setLength(0);
-        return response.isEmpty() ? DEFAULT_RESPONSE : response;
+        return response.isEmpty()
+                ? DEFAULT_RESPONSE
+                : response;
     }
 
     /**
@@ -73,8 +74,12 @@ public class TrashBot {
      * @param input the command string from the user
      */
     public void processCommand(String input) {
-        assert input != null : "Input cannot be null";
-        assert !input.trim().isEmpty() : "Input cannot be empty";
+        assert input != null
+                : "Input cannot be null";
+        assert !input.trim().isEmpty()
+                : "Input cannot be empty";
+
+        currentResponse.setLength(0);
 
         try {
             executeCommand(input);
@@ -126,7 +131,8 @@ public class TrashBot {
         checkInput(input);
         CommandType type = getCommandType(input);
 
-        assert !input.trim().isEmpty() : "Input cannot be empty";
+        assert !input.trim().isEmpty()
+                : "Input cannot be empty";
 
         return generateCommand(type, input);
     }
@@ -198,7 +204,8 @@ public class TrashBot {
      * @throws UnknownInputException if the task ID is invalid or missing
      */
     private DeleteCommand generateDeleteCommand(String input) throws UnknownInputException {
-        assert input != null : "Input cannot be null";
+        assert input != null
+                : "Input cannot be null";
 
         try {
             String[] parts = input.split(" ", 2);
@@ -207,9 +214,15 @@ public class TrashBot {
             }
 
             String[] taskIdStrings = parts[1].trim().split("\\s+");
-            int[] taskIds = Arrays.stream(taskIdStrings)
-                    .mapToInt(idStr -> Integer.parseInt(idStr) - 1)
-                    .toArray();
+            int[] taskIds = new int[taskIdStrings.length];
+
+            for (int i = 0; i < taskIdStrings.length; i++) {
+                try {
+                    taskIds[i] = Integer.parseInt(taskIdStrings[i]) - 1;
+                } catch (NumberFormatException e) {
+                    throw new UnknownInputException("Invalid task number: " + taskIdStrings[i]);
+                }
+            }
 
             if (taskIds.length == 0) {
                 throw new UnknownInputException("Please specify task number(s) to delete");
@@ -237,10 +250,11 @@ public class TrashBot {
     private MarkCommand generateMarkCommand(String input, boolean isDone) throws UnknownInputException {
         try {
             int taskId = getTaskId(input);
-
             return new MarkCommand(taskId - 1, isDone);
         } catch (NumberFormatException e) {
-            throw new UnknownInputException("Task number does not exist");
+            throw new UnknownInputException("Invalid task number format");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new UnknownInputException("Please specify a task number to mark");
         }
     }
 
@@ -253,10 +267,13 @@ public class TrashBot {
      * @param input the command string containing the task ID
      * @return the parsed task ID as an integer
      * @throws NumberFormatException if the task ID is not a valid integer
+     * @throws ArrayIndexOutOfBoundsException if no task ID is provided
      */
     private int getTaskId(String input) {
         String[] split = input.split(" ", 2);
-
-        return Integer.parseInt(split[1]);
+        if (split.length < 2 || split[1].trim().isEmpty()) {
+            throw new ArrayIndexOutOfBoundsException("No task ID provided");
+        }
+        return Integer.parseInt(split[1].trim());
     }
 }

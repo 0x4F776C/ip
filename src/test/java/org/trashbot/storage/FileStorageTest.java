@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Event;
 import org.trashbot.tasks.Task;
@@ -27,7 +28,7 @@ class FileStorageTest {
     }
 
     @Test
-    void testConvertStringToValidDeadline() {
+    void testConvertStringToValidDeadline() throws DukeException {
         String input = "D | 0 | watch netflix | Sep 11 2020 11:59pm";
         Task task = storage.convertStringToTask(input);
 
@@ -67,7 +68,7 @@ class FileStorageTest {
 
     @Test
     void testConvertStringWithMissingFields() {
-        String input = "D | 1 | die"; // Missing deadline
+        String input = "D | 1 | die";
         Task task = storage.convertStringToTask(input);
         assertNull(task);
     }

@@ -3,6 +3,7 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.storage.DataPersistence;
 import org.trashbot.tasks.Task;
@@ -68,7 +69,7 @@ public class TodoCommand implements Command {
      * @see DataPersistence#save(List)
      */
     @Override
-    public String execute(List<Task> tasks, DataPersistence storage) throws EmptyDescriptionException, IOException {
+    public String execute(List<Task> tasks, DataPersistence storage) throws DukeException, IOException {
         if (input.trim().length() < MIN_DESCRIPTION_LENGTH) {
             throw new EmptyDescriptionException("todo");
         }

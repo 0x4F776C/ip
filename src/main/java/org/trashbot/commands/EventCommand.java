@@ -3,6 +3,7 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.exceptions.InvalidFormatException;
 import org.trashbot.storage.DataPersistence;
@@ -62,7 +63,7 @@ public class EventCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage)
-            throws InvalidFormatException, EmptyDescriptionException, IOException {
+            throws DukeException, IOException {
         if (!input.contains(STRING_FROM) || !input.contains(STRING_TO)) {
             throw new InvalidFormatException("Please use the format: event /from <start> /to <end>");
         }

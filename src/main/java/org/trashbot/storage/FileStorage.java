@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.tasks.Deadline;
 import org.trashbot.tasks.Event;
 import org.trashbot.tasks.Task;
@@ -40,7 +41,7 @@ public class FileStorage implements DataPersistence {
      * @param tasks list of tasks to save
      * @throws IOException if an I/O error occurs during file operations
      */
-    public void save(List<Task> tasks) throws IOException {
+    public void save(List<Task> tasks) throws IOException, DukeException {
         if (!Files.exists(directory)) {
             Files.createDirectories(directory);
         }
@@ -93,7 +94,7 @@ public class FileStorage implements DataPersistence {
      * @param task task to convert
      * @return string representation of the task
      */
-    protected String convertTaskToString(Task task) {
+    protected String convertTaskToString(Task task) throws DukeException {
         StringBuilder sb = new StringBuilder();
 
         if (task instanceof Todo) {
@@ -144,12 +145,11 @@ public class FileStorage implements DataPersistence {
             return getTaskTypeReturn(parts);
 
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
 
-    private Task getTaskTypeReturn(String[] parts) {
+    private Task getTaskTypeReturn(String[] parts) throws DukeException {
         String taskType = parts[0];
         boolean isDone = parts[1].equals("1");
         String description = parts[2];

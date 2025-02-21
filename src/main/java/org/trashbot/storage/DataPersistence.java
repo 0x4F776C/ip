@@ -3,6 +3,7 @@ package org.trashbot.storage;
 import java.io.IOException;
 import java.util.List;
 
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.tasks.Task;
 
 /**
@@ -43,7 +44,7 @@ public interface DataPersistence {
      * @throws IOException if there is an error writing to the storage medium,
      *                     such as file system errors or network issues
      */
-    void save(List<Task> tasks) throws IOException;
+    void save(List<Task> tasks) throws IOException, DukeException;
 
     /**
      * Loads all tasks from persistent storage.

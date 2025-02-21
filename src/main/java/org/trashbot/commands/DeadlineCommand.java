@@ -3,6 +3,7 @@ package org.trashbot.commands;
 import java.io.IOException;
 import java.util.List;
 
+import org.trashbot.exceptions.DukeException;
 import org.trashbot.exceptions.EmptyDescriptionException;
 import org.trashbot.exceptions.InvalidFormatException;
 import org.trashbot.storage.DataPersistence;
@@ -60,7 +61,7 @@ public class DeadlineCommand implements Command {
      */
     @Override
     public String execute(List<Task> tasks, DataPersistence storage)
-            throws InvalidFormatException, EmptyDescriptionException, IOException {
+            throws DukeException, IOException {
         assert tasks != null : "List cannot be null";
         assert storage != null : "Storage cannot be null";
 
