@@ -245,7 +245,7 @@ public class TrashBot {
     }
 
     /**
-     * Extracts the task ID from the input string.
+     * Extract(s) the task ID(s) from the input string.
      * <p>
      * Splits the input string and parses the second part as an integer task ID.
      * </p>
