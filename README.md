@@ -1,7 +1,7 @@
 # TrashBot - User Guide
 [![Build and Test Java](https://github.com/0x4F776C/ip/actions/workflows/gradle.yml/badge.svg)](https://github.com/0x4F776C/ip/actions/workflows/gradle.yml)
 
-![Ui](src/main/resources/images/Ui.png)
+![Ui](docs/Ui.png)
 
 ## Introduction
 
