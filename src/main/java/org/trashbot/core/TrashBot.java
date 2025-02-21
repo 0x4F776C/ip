@@ -109,7 +109,8 @@ public class TrashBot {
      */
     private void handleCommandError(Exception e) {
         String errorPrefix = e instanceof IOException ? "Error: " : "";
-        currentResponse.append(errorPrefix).append(e.getMessage());
+        currentResponse.append(errorPrefix)
+                .append(e.getMessage());
     }
 
     /**
@@ -210,7 +211,7 @@ public class TrashBot {
         try {
             String[] parts = input.split(" ", 2);
             if (parts.length < 2) {
-                throw new UnknownInputException("Please specify task number(s) to delete");
+                throw new ArrayIndexOutOfBoundsException("Please specify task number(s) to delete");
             }
 
             String[] taskIdStrings = parts[1].trim().split("\\s+");
@@ -219,8 +220,8 @@ public class TrashBot {
             for (int i = 0; i < taskIdStrings.length; i++) {
                 try {
                     taskIds[i] = Integer.parseInt(taskIdStrings[i]) - 1;
-                } catch (NumberFormatException e) {
-                    throw new UnknownInputException("Invalid task number: " + taskIdStrings[i]);
+                } catch (Exception e) {
+                    throw new IndexOutOfBoundsException(taskIdStrings[i] + " is out of bounds");
                 }
             }
 
@@ -252,9 +253,9 @@ public class TrashBot {
             int taskId = getTaskId(input);
             return new MarkCommand(taskId - 1, isDone);
         } catch (NumberFormatException e) {
-            throw new UnknownInputException("Invalid task number format");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new UnknownInputException("Please specify a task number to mark");
+            throw new IndexOutOfBoundsException(input + " is out of bounds");
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Please specify a task number to mark");
         }
     }
 
